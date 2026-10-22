@@ -1,6 +1,6 @@
 <!-- To preview this markdown file in VSCode: Ctrl+Shift+V -->
 
-# CS2 Portfolio | CS 2336 (Computer Science II) | UTD Spring 2020
+# CS2 Portfolio | CS 2336 (Computer Science II)
 ## Author: Bushra Rahman
 GitHub Pages link: https://br815.github.io/CS2-portfolio/
 
