@@ -10,6 +10,8 @@ Open terminal in `CS2-portfolio` and run:
 ```
 cd CS2336/HW0
 mkdir build
+javac -d build src/Tickets/Main.java src/Tickets/Auditorium.java
+# Or use the *.java wildcard for a conciser compilation instruction:
 javac -d build src/Tickets/*.java
 java -cp build Tickets.Main
 ```

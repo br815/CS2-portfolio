@@ -12,9 +12,9 @@ The purpose of this repository is archival and educational:
 - to reflect on design decisions and showcase my improved understanding of the language
 
 ## Highlights
-- Recursive algorithms
 - Implementation of fundamental data structures like linked lists, stacks, and queues
-- Implementation and use of advanced data structures like binary trees, hash tables, and graphs
+- Implementation and use of advanced data structures like binary search trees (BSTs), hash tables, and graphs
+- Implementation and analysis of complex algorithms like recursive algorithms
 
 ## Instructions to Install Java
 The Java Development Kit (JDK) is necessary to run these assignments (since it contains the `javac` bytecode compiler and the Java Runtime Environment (JRE), which is used to run Java applications and which contains the Java Virtual Machine (JVM), which is used to execute Java bytecode).
@@ -68,9 +68,9 @@ javac -d build src/Tickets/*.java       # compile CLASS files into the build fol
 java -cp build Tickets.Main             # provide the build folder as the classpath to Main
 ```
 <!-- CODE END -->
-Java compilation & execution can occur from anywhere through the use of relative paths & classpaths, as long as the compilation instruction specifies the relative path to the `.java` source files & the execution instruction specifies the classpath to the `.class` bytecode files. However, execution *should* occur from the project root (because that is the conventional location from which your program should retrieve any IO files). (4-22-26: DOUBLE CHECK THIS INFO!!!!! AND UPDATE OTHER PORTFOLIO READMES ACCORDINGLY)
+Java compilation & execution can occur from anywhere through the use of relative paths & classpaths, as long as the compilation instruction specifies the relative path to the `.java` source files & the execution instruction specifies the classpath to the `.class` bytecode files. However, execution *should* occur from the project root (because that is the conventional location from which your program should retrieve any IO files).
 
-In order to achieve both compilation & execution from the project root, this compilation instruction goes through `src/Tickets/` to compile all `.java` source files in the [Tickets](/CS2336/HW0/src/Tickets/) package inside [src](/CS2336/HW0/src/).  Alternatively, each source file can be compiled individually through their paths:
+In order to achieve both compilation & execution from the project root, this compilation instruction goes through `src/Tickets/` to compile all `.java` source files in the [Tickets](/CS2336/HW0/src/Tickets/) package that is in [src](/CS2336/HW0/src/).  Alternatively, each source file can be compiled individually through their paths:
 <!-- CODE START -->
 ```
 javac -d build src/Tickets/Main.java src/Tickets/Auditorium.java
@@ -78,15 +78,15 @@ javac -d build src/Tickets/Main.java src/Tickets/Auditorium.java
 <!-- CODE END -->
 By default, Java produces `.class` files directly in the same package as the `.java` files; however, the provided compilation instruction uses the `-d` flag to produce `.class` files in a [build](/CS2336/HW0/build/) folder for clearer file organization. (A [same-name package](/CS2336/HW0/build/Tickets/) will be generated inside [build](/CS2336/HW0/build/) to contain the `.class` files.)
 
-Then, execution can occur from the project root as long as the flag `-cp` or `-classpath` is specified. This flag specifies the path to the driver class `[packageName].[className]` (ie. the `Main` CLASS file containing `public static void main(String[] args)`), which for this project is through `build/`. (The driver class's full name can also be given as `[packageName]/[className]`, but typically in Java, `.` is for runtime commands while `/` is used for filepaths during compilation.)
+Then, execution can occur from the project root as long as the flag `-cp` or `-classpath` is specified. This flag specifies the path to the driver class `<packageName>.<className>` (ie. the `Main` CLASS file containing `public static void main(String[] args)`), which for this project is through `build/`. (The driver class's full name can also be given as `<packageName>/<className>`, but typically in Java, `.` is for runtime commands while `/` is used for filepaths during compilation.)
 
 Similar compilation & execution behavior can be achieved through alternative commands, like:
 <!-- CODE START -->
 ```
-cd CS2336/HW0/src/Tickets
+cd CS2336/HW0/src/Tickets           # cd to project package
 javac *.java                        # or, javac Main.java Auditorium.java (note that here, .class files are produced directly in the package)
 cd ../..                            # go back to the project root
-java -classpath src Tickets.Main
+java -classpath src Tickets.Main    # uses full name flag -classpath instead of the abbreviated flag -cp
 ```
 <!-- CODE END -->
 
