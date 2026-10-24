@@ -55,8 +55,8 @@ To install Java JDK on Windows 11 or less, follow [these instructions](https://g
 4. After installing Java and adding it to `Path`, make sure to restart your IDE to avoid compilation errors.
 
 ## Java Compilation & Execution Overview
-(Using [HW0](/CS2336/HW0/) as an example. HW0 contains a [src](/CS2336/HW0/src/) folder,\
-which contains a package called [Tickets](/CS2336/HW0/src/Tickets/),\
+(Using [`HW0/`](/CS2336/HW0/) as an example. HW0 contains a [`src/`](/CS2336/HW0/src/) folder,\
+which contains a package called [`Tickets/`](/CS2336/HW0/src/Tickets/),\
 which contains 2 source files [Main.java](/CS2336/HW0/src/Tickets/Main.java) and [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java).)
 
 Open terminal in `CS2-portfolio` and run:
@@ -70,13 +70,13 @@ java -cp build Tickets.Main             # provide the build folder as the classp
 <!-- CODE END -->
 Java compilation & execution can occur from anywhere through the use of relative paths & classpaths, as long as the compilation instruction specifies the relative path to the `.java` source files & the execution instruction specifies the classpath to the `.class` bytecode files. However, execution *should* occur from the project root (because that is the conventional location from which your program should retrieve any IO files).
 
-In order to achieve both compilation & execution from the project root, this compilation instruction goes through `src/Tickets/` to compile all `.java` source files in the [Tickets](/CS2336/HW0/src/Tickets/) package that is in [src](/CS2336/HW0/src/).  Alternatively, each source file can be compiled individually through their paths:
+In order to achieve both compilation & execution from the project root, this compilation instruction goes through `src/Tickets/` to compile all `.java` source files in the `Tickets/` package that is in `src/`.  Alternatively, each source file can be compiled individually through their paths:
 <!-- CODE START -->
 ```
 javac -d build src/Tickets/Main.java src/Tickets/Auditorium.java
 ```
 <!-- CODE END -->
-By default, Java produces `.class` files directly in the same package as the `.java` files; however, the provided compilation instruction uses the `-d` flag to produce `.class` files in a [build](/CS2336/HW0/build/) folder for clearer file organization. (A [same-name package](/CS2336/HW0/build/Tickets/) will be generated inside [build](/CS2336/HW0/build/) to contain the `.class` files.)
+By default, Java produces `.class` files directly in the same package as the `.java` files; however, the provided compilation instruction uses the `-d` flag to produce `.class` files in a `build/` folder for clearer file organization. (A [same-name package](/CS2336/HW0/build/Tickets/) will be generated inside `build/` to contain the `.class` files.)
 
 Then, execution can occur from the project root as long as the flag `-cp` or `-classpath` is specified. This flag specifies the path to the driver class `<packageName>.<className>` (ie. the `Main` CLASS file containing `public static void main(String[] args)`), which for this project is through `build/`. (The driver class's full name can also be given as `<packageName>/<className>`, but typically in Java, `.` is for runtime commands while `/` is used for filepaths during compilation.)
 

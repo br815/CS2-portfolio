@@ -2,9 +2,9 @@
 
 # CS2 Portfolio | HW0: Ticket Reservation System Using OOP
 ## Author: Bushra Rahman
-This is the repository for [CS 2336/HW0](/CS2336/HW0).
+This is the repository for [`CS 2336/HW0/`](/CS2336/HW0).
 
-## Execution Instructions
+## Compilation & Execution Instructions
 Open terminal in `CS2-portfolio` and run:
 <!-- CODE START -->
 ```
@@ -20,10 +20,10 @@ java -cp build Tickets.Main
 ## Homework Instructions
 * [HW 0: Introduction to Object-Oriented Programming](/CS2336/HW0/HW0_Intro_To_OOP.pdf)
 
-## `src` Folder
-### Source Files in the `Tickets` Package
+## `src/` Folder
+### Source Files in the `Tickets/` Package
 * [Main.java](/CS2336/HW0/src/Tickets/Main.java): program driver containing `main()`
-* [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java): contains the class definition of the Auditorium class, including 18 functions
+* [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java): contains the definition of a class, including 18 functions
 
 ## Input Files
 * [A1.txt](/CS2336/HW0/A1.txt): input file choice 1 (for standard output)
