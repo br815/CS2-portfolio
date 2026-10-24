@@ -91,8 +91,18 @@ java -classpath src Tickets.Main    # uses full name flag -classpath instead of 
 <!-- CODE END -->
 
 ## Homework Instructions & Readme Files
-* ...
-    * ...
+* HW 0
+    * [HW 0: Introduction to Object-Oriented Programming](/CS2336/HW0/HW0_Intro_To_OOP.pdf)
+    * [HW 0 readme](/CS2336/HW0/readme.md)
+* HW 1
+    * [HW 1: Inheritance & Polymorphism](/CS2336/HW1/HW1_Inheritance_Polymorphism.pdf)
+    * [HW 1: readme](/CS2336/HW1/readme.md)
+* HW 2
+    * [HW 2: Multi-Directional Linked Lists](/CS2336/HW2/HW2_Multi_Linked_List.pdf)
+    * [HW 2: readme](/CS2336/HW2/readme.md)
+* HW 3
+    * [HW 3: Binary Search Trees](/CS2336/HW3/HW3_BST.pdf)
+    * [HW 3: readme](/CS2336/HW3/readme.md)
 
 ## Notes
 As a learning exercise, some of my code explores alternative designs that go beyond what was required for this course.
