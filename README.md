@@ -19,17 +19,17 @@ The purpose of this repository is archival and educational:
 ## Instructions to Install Java
 The Java Development Kit (JDK) is necessary to run these assignments (since it contains the `javac` bytecode compiler and the Java Runtime Environment (JRE), which is used to run Java applications and which contains the Java Virtual Machine (JVM), which is used to execute Java bytecode).
 
-To install Java JDK on Windows 11 or less, follow [these instructions](https://github.com/br815/CS1-portfolio/blob/main/CS1337/Eclipse_for_Windows_with_MinGW.pdf) (refer to Pages 1-2 of the linked PDF):
+To install JDK on Windows 11 or less, follow [these instructions](https://github.com/br815/CS1-portfolio/blob/main/CS1337/Eclipse_for_Windows_with_MinGW.pdf) (refer to Pages 1-2 of the linked PDF):
 1. Download the x64 installer (`.exe` extention) for the latest version of the Standard Java SE Development Kit from [this Oracle link](https://www.oracle.com/java/technologies/downloads/).
 2. Run the installer. Don’t make any changes with the installer.
-3. Add the Java JDK the `Path` Environment Variable. [This YouTube video](https://www.youtube.com/watch?v=uadGsNA6h5Q) has the steps to follow:
+3. Add the JDK the `Path` Environment Variable. [This YouTube video](https://www.youtube.com/watch?v=uadGsNA6h5Q) has the steps to follow:
     * Open `Control Panel >> System and Security >> System >> Advanced System Settings`.\
     (Alternatively, open `Settings >> System >> About >> Advanced System Settings`.)\
     This opens a window for `System Properties`.
     * In `System Properties`, go to `Environment Variables`.\
     In `Environment Variables`, look down at `System variables` and scroll until you reach `Path`.\
     Select `Path` and hit `Edit`.
-    * Once you’ve opened `Edit environment variable`, find the file path for Java JDK’s `/bin` folder in your File Explorer and copy it.\
+    * Once you’ve opened `Edit environment variable`, find the file path for JDK’s `/bin` folder in your File Explorer and copy it.\
     It should look similar to:
     <!-- CODE START -->
     ```
@@ -38,7 +38,7 @@ To install Java JDK on Windows 11 or less, follow [these instructions](https://g
     <!-- CODE END -->
     * Go back to `Edit environment variable`, hit `New`, and paste the file path for `/bin`.
     * Then hit `OK` in `Edit environment variable`, hit `OK` in `Environment Variables`, and hit `OK` in `System Properties`.
-    * Java JDK should now be properly installed and locatable within `Path`. To test in Command Prompt, run:
+    * The JDK should now be properly installed and locatable within `Path`. To test in Command Prompt, run:
     <!-- CODE START -->
     ```
     java --version
