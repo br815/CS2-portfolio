@@ -84,7 +84,7 @@ Similar compilation & execution behavior can be achieved through alternative com
 <!-- CODE START -->
 ```
 cd CS2336/HW0/src/Tickets           # cd to project package
-javac *.java                        # or, javac Main.java Auditorium.java (note that here, .class files are produced directly in the package)
+javac *.java                        # or, <javac Main.java Auditorium.java> (note that here, .class files are produced directly in the package)
 cd ../..                            # go back to the project root
 java -classpath src Tickets.Main    # uses full name flag -classpath instead of the abbreviated flag -cp
 ```
