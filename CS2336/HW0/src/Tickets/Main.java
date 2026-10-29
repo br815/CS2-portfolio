@@ -22,10 +22,10 @@ public class Main
 			Auditorium auditorium = new Auditorium();							// create an Auditorium object
 			auditorium.displayMainMenu();										// call its driver method
 		}
-		catch (IOException fileException)
+		catch(IOException fileException)
 		{
         	System.out.println("File error: " + fileException.getMessage());	// print any file error for front-facing user to see
-			// fileException.printStackTrace();									// un-comment for debugging info for back-end developer use
+			/// fileException.printStackTrace();								// un-comment for debugging info for back-end developer use
 		}
 	}
 }

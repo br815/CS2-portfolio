@@ -13,7 +13,7 @@ import java.util.Scanner;
 // Beginning of class definition of Auditorium
 public class Auditorium
 {
-	// Constants
+	// member constants
 	private final String seating_arrangement_file = "A1.txt";	// input file name: the input files provided are A1.txt or A2.txt
 	private final int MAX_ROWS = 10;							// max # of rows
 	private final int MAX_SEATS_PER_ROW = 26;					// max # of columns
@@ -21,7 +21,7 @@ public class Auditorium
 	private final double TICKET_PRICE_CHILD = 5.00;				// child ticket price
 	private final double TICKET_PRICE_SENIOR = 7.50;			// senior ticket price
 
-	// Non-constants
+	// member variables
 	private int numRows;				// # of rows in input file
 	private int numSeatsPerRow;			// # of columns in input file
 	private char[][] seats;				// array of characters from input file
@@ -48,9 +48,9 @@ public class Auditorium
 
 		// create array and initialize with '*' (an invalid char for the array)
 		seats = new char[MAX_ROWS][MAX_SEATS_PER_ROW];
-		for (int row = 0; row < MAX_ROWS; row++)
+		for(int row = 0; row < MAX_ROWS; row++)
 		{
-			for (int col = 0; col < MAX_SEATS_PER_ROW; col++)
+			for(int col = 0; col < MAX_SEATS_PER_ROW; col++)
 			{
 				seats[row][col] = '*';
 			}
@@ -83,30 +83,30 @@ public class Auditorium
 		char seatStatus = '*';
 
 		// read from input file
-		while (in.hasNext())
+		while(in.hasNext())
 		{
 			str = in.next();						// ignores line with only white spaces - GOOD
 			numSeatsInCurrentRow = str.length();	// length of first line of text
 			rowIndex++;
 
 			// Check for inconsistent # of rows and/or seats - START
-			if (rowIndex == 0)	// for first line of input file only
+			if(rowIndex == 0)	// for first line of input file only
 			{
 				numSeatsInFirstRow = numSeatsInCurrentRow;
-				if (numSeatsInCurrentRow > MAX_SEATS_PER_ROW)	// more seats than max allowed
+				if(numSeatsInCurrentRow > MAX_SEATS_PER_ROW)	// more seats than max allowed
 				{
 					System.out.println("INPUT FILE ERROR: seats in the first row = " + numSeatsInCurrentRow + "   max allowed = " + MAX_SEATS_PER_ROW);
 					System.exit(1);
 				}
 			}
-			else if (rowIndex == MAX_ROWS)	// rowIndex's range is only 0-9, and should never = 10
+			else if(rowIndex == MAX_ROWS)	// rowIndex's range is only 0-9, and should never = 10
 			{
 				System.out.println("INPUT FILE ERROR: Reading row # " + (rowIndex + 1) + "   max allowed = " + MAX_ROWS);
 				System.exit(1);
 			}
 			else
 			{
-				if (numSeatsInFirstRow != numSeatsInCurrentRow)	// if any row has more seats than it should
+				if(numSeatsInFirstRow != numSeatsInCurrentRow)	// if any row has more seats than it should
 				{
 					System.out.println("INPUT FILE ERROR: Seats in First Row = " + numSeatsInFirstRow + "    but Seats in Current Row = " + numSeatsInCurrentRow);
 					System.exit(1);
@@ -116,25 +116,25 @@ public class Auditorium
 
 			
 			// save seat status for the current row and count seats
-			for (seatIndex = 0; seatIndex < numSeatsInCurrentRow; seatIndex++)
+			for(seatIndex = 0; seatIndex < numSeatsInCurrentRow; seatIndex++)
 			{
 				// seatStatus is the char at each position in the input file; either 'A' or 'C' or 'S' or '.'
 				seatStatus = str.charAt(seatIndex);
 				
 				// if any seats are reserved, they count towards the total ticket sales of the auditorium.
-				if (seatStatus == 'A')
+				if(seatStatus == 'A')
 				{
 					num_AdultTickets++;
 				}
-				else if (seatStatus == 'C')
+				else if(seatStatus == 'C')
 				{
 					num_ChildTickets++;
 				}
-				else if (seatStatus == 'S')
+				else if(seatStatus == 'S')
 				{
 					num_SeniorTickets++;
 				}
-				else if (seatStatus != '.')	// any other char is invalid
+				else if(seatStatus != '.')	// any other char is invalid
 				{
 					System.out.println("ERROR. Row # " + (rowIndex+1) + ", Seat # " + (seatIndex+1) + " : invalid seat type is: " + seatStatus);
 					System.exit(1);
@@ -147,7 +147,7 @@ public class Auditorium
 		in.close();
 
 		// check if input file was empty
-		if (rowIndex < 0)	// rowIndex never increased from -1
+		if(rowIndex < 0)	// rowIndex never increased from -1
 		{
 			System.out.println("INPUT FILE ERROR: Number of Rows = " + (rowIndex + 1));
 			System.exit(1);
@@ -178,7 +178,7 @@ public class Auditorium
 
 		// determine if there are still open seats
 		boolean okayToLoop = isSeatsAvailable();
-		if (okayToLoop)
+		if(okayToLoop)
 		{
 			int optionSelected = 0;
 			do {											// display the main menu at least once
@@ -187,17 +187,17 @@ public class Auditorium
 
 				optionSelected = scanner.nextInt();
 
-				if (optionSelected == 1)					// "Reserve Seats" option is chosen
+				if(optionSelected == 1)					// "Reserve Seats" option is chosen
 				{
 					promptReservationMenu(scanner);			// show reservation menu and pass scanner to the function
 					okayToLoop = isSeatsAvailable();		// check if there are still open seats
 				}
-			} while (optionSelected != 2 && okayToLoop);
+			} while(optionSelected != 2 && okayToLoop);
 		}
 
 		// End of if loop - write everything to file, show on-screen report
 		displayReport();
-		if (!okayToLoop)
+		if(!okayToLoop)
 		{	// all seats have been sold
 			System.out.println("STOP: No seats available for sale.");
 		}
@@ -217,7 +217,7 @@ public class Auditorium
 	{
 		// calculate total seats in auditorium
 		int num_total_seats_in_Auditorium = numRows*numSeatsPerRow;
-		if (num_TotalTicketsSold < num_total_seats_in_Auditorium)
+		if(num_TotalTicketsSold < num_total_seats_in_Auditorium)
 		{	// if all seats are not yet sold
 			return true;
 		}
@@ -268,20 +268,20 @@ public class Auditorium
 		int numSeniorTicketsRequested = promptNumberOfTicketsMenu(scanner, 3);
 
 		int numTotalTicketsRequested = numAdultTicketsRequested + numChildTicketsRequested + numSeniorTicketsRequested;
-		if (numTotalTicketsRequested == 0)
+		if(numTotalTicketsRequested == 0)
 		{	// if user chose to buy 0 of all three types of tickets
 			System.out.println("WARNING: Total # of tickets requested = 0");
 			return;
 		}
 
-		if (seatSelectionExtendsPastEndOfRow (startingSeatIdNumber, numTotalTicketsRequested) == true)
+		if(seatSelectionExtendsPastEndOfRow (startingSeatIdNumber, numTotalTicketsRequested) == true)
 		{	// check that the desired amount of seats fits in the desired row
 			System.out.println("WARNING: Seat Selection Extends Past End of Row");
 			return;
 		}
 
 		boolean okayToProcessOrder = false;
-		if (seatsAreOpen(rowIndex, startingSeatIdNumber, numTotalTicketsRequested) == true)
+		if(seatsAreOpen(rowIndex, startingSeatIdNumber, numTotalTicketsRequested) == true)
 		{	// seats are open, so the program can proceed to reserve the seats
 			okayToProcessOrder = true;
 			/// System.out.println("okayToProcessOrder is TRUE");
@@ -290,7 +290,7 @@ public class Auditorium
 		{
 			// check for alternate seats
 			int alt_SeatIdNumber = altSeatIdNumber(scanner, rowIndex, numTotalTicketsRequested);
-			if (alt_SeatIdNumber > -1)  // alternate seats were found
+			if(alt_SeatIdNumber > -1)  // alternate seats were found
 			{
 				// alternate seats are available, so the program can proceed to reserve the seats
 				okayToProcessOrder = true;
@@ -301,7 +301,7 @@ public class Auditorium
 		/// System.out.println("**** okayToProcessOrder: " + okayToProcessOrder);
 
 		// seats are available, either the desired or alternate seats
-		if (okayToProcessOrder)
+		if(okayToProcessOrder)
 		{
 			// order can be processed
 			processOrder(rowIndex, startingSeatIdNumber, numAdultTicketsRequested, numChildTicketsRequested, numSeniorTicketsRequested);
@@ -321,19 +321,19 @@ public class Auditorium
 	private void processOrder(int rowIndex, int startingSeatIdNumber, int numAdultTicketsRequested, int numChildTicketsRequested, int numSeniorTicketsRequested)
 	{
 		int seatIndex = startingSeatIdNumber - 65;	// the actual numerical index of the seat
-		while (seatIndex < (startingSeatIdNumber + numAdultTicketsRequested - 65))
+		while(seatIndex < (startingSeatIdNumber + numAdultTicketsRequested - 65))
 		{	// fills the adult seats first
 			seats[rowIndex][seatIndex] = 'A';
 			seatIndex++;
 		}
 
-		while (seatIndex < (startingSeatIdNumber + numAdultTicketsRequested + numChildTicketsRequested -65))
+		while(seatIndex < (startingSeatIdNumber + numAdultTicketsRequested + numChildTicketsRequested -65))
 		{	// fills the child seats next
 			seats[rowIndex][seatIndex] = 'C';
 			seatIndex++;
 		}
 
-		while (seatIndex < (startingSeatIdNumber + numAdultTicketsRequested + numChildTicketsRequested + numSeniorTicketsRequested -65))
+		while(seatIndex < (startingSeatIdNumber + numAdultTicketsRequested + numChildTicketsRequested + numSeniorTicketsRequested -65))
 		{  // fills the senior seats last
 			seats[rowIndex][seatIndex] = 'S';
 			seatIndex++;
@@ -372,7 +372,7 @@ public class Auditorium
 		int left = leftSeatIdNumber(rowIndex, numTotalTicketsRequested);
 		/// System.out.println("left: " + left);
 
-		if (right > -1 && left > -1)
+		if(right > -1 && left > -1)
 		{	// if there are alternate seats on both sides of the row center
 			double rowCenter = (65 + (65 + numSeatsPerRow - 1)) / 2.0;						// index of row center = average of the # of seats in a row
 			double rightCenter = (right + (right + numTotalTicketsRequested - 1)) / 2.0;	// index of right-side selection's center
@@ -382,37 +382,37 @@ public class Auditorium
 
 			/// System.out.println("rightDistance: " + rightDistance);
 			/// System.out.println("leftDistance: " + leftDistance);
-			if (rightDistance <= leftDistance)
+			if(rightDistance <= leftDistance)
 			{	// if right-side seats are closer to row center, they are offered
-				if (acceptedAlternateSeatOffer(scanner, right))
+				if(acceptedAlternateSeatOffer(scanner, right))
 				{
 					altSeatIdNumber = right;
 				}
 			}
 			else
 			{	// if left-side seats are closer to row center, they are offered instead
-				if (acceptedAlternateSeatOffer(scanner, left))
+				if(acceptedAlternateSeatOffer(scanner, left))
 				{
 					altSeatIdNumber = left;
 				}
 			}
 		}
-		else if (right > -1)
+		else if(right > -1)
 		{	// if left-side seats were unavailable but there were available seats of the right
-			if (acceptedAlternateSeatOffer(scanner, right))
+			if(acceptedAlternateSeatOffer(scanner, right))
 			{
 				altSeatIdNumber = right;
 			}
 		}
-		else if (left > -1)
+		else if(left > -1)
 		{	// if right-side seats were unavailable but there were available seats of the left
-			if (acceptedAlternateSeatOffer(scanner, left))
+			if(acceptedAlternateSeatOffer(scanner, left))
 			{
 				altSeatIdNumber = left;
 			}
 		}
 
-		if (right == -1 && left == -1)
+		if(right == -1 && left == -1)
 		{	// neither left side nor right side has alternate seats
 			System.out.println("Requested seat(s) not available. Best seat(s) also not available. Please try again.");
 		}
@@ -439,7 +439,7 @@ public class Auditorium
 		userResponse = str.charAt(0);
 
 		// prompt user to accept or decline next-best seats
-		while (str.length() > 1 || (userResponse != 'Y' && userResponse != 'N'))
+		while(str.length() > 1 || (userResponse != 'Y' && userResponse != 'N'))
 		{
 			System.out.print("Reserve the Best available seat(s)? Y/N : ");
 			str = scanner.next().toUpperCase();
@@ -448,7 +448,7 @@ public class Auditorium
 
 		// check if user has accepted
 		boolean acceptedOffer = false;
-		if (userResponse == 'Y')
+		if(userResponse == 'Y')
 		{
 			acceptedOffer = true;
 		}
@@ -473,10 +473,10 @@ public class Auditorium
 		/// System.out.println("startingSeatIndexForTesting:" + startingSeatIndexForTesting);
 		/// System.out.println( "endingSeatIndexForTesting:" + endingSeatIndexForTesting);
 
-		for (int seatIdNumber = 65 + startingSeatIndexForTesting; seatIdNumber >= (65 + endingSeatIndexForTesting); seatIdNumber--)
+		for(int seatIdNumber = 65 + startingSeatIndexForTesting; seatIdNumber >= (65 + endingSeatIndexForTesting); seatIdNumber--)
 		{	// iterate right-to-left through the seats left of the row center
 			/// System.out.println("** seatIdNumber:" + seatIdNumber);
-			if (seatsAreOpen(rowIndex, seatIdNumber, numTicketsRequested))
+			if(seatsAreOpen(rowIndex, seatIdNumber, numTicketsRequested))
 			{	// if the user's desired amount of seats are available
 				leftSeatIdNumber = seatIdNumber;
 				break;
@@ -504,10 +504,10 @@ public class Auditorium
 		/// System.out.println("startingSeatIndexForTesting:" + startingSeatIndexForTesting);
 		/// System.out.println("endingSeatIndexForTesting:" + endingSeatIndexForTesting);
 
-		for (int seatIdNumber = 65 + startingSeatIndexForTesting; seatIdNumber <= (65 + endingSeatIndexForTesting); seatIdNumber++)
+		for(int seatIdNumber = 65 + startingSeatIndexForTesting; seatIdNumber <= (65 + endingSeatIndexForTesting); seatIdNumber++)
 		{	// iterate left-to-right through the seats right of the row center
 			/// System.out.println("** seatIdNumber:" + seatIdNumber);
-			if (seatsAreOpen(rowIndex, seatIdNumber, numTicketsRequested))
+			if(seatsAreOpen(rowIndex, seatIdNumber, numTicketsRequested))
 			{	// if the user's desired amount of seats are available
 				rightSeatIdNumber = seatIdNumber;
 				break;
@@ -529,14 +529,14 @@ public class Auditorium
 	private boolean seatsAreOpen(int rowIndex, int startingSeatIdNumber, int numTickets)
 	{
 		boolean areOpen = true;
-		if (numTickets > 0)
+		if(numTickets > 0)
 		{
 			int startingSeatIndex = startingSeatIdNumber - 65;
-			for (int col = startingSeatIndex; col < (startingSeatIndex + numTickets); col++)
+			for(int col = startingSeatIndex; col < (startingSeatIndex + numTickets); col++)
 			{
 				// If there's a '.' at any point in the desired range of seats,
 				// then the seat selection as a whole can't be reserved.
-				if (seats[rowIndex][col] != '.')
+				if(seats[rowIndex][col] != '.')
 				{
 					areOpen = false;
 					break;
@@ -559,12 +559,12 @@ public class Auditorium
 	private boolean seatSelectionExtendsPastEndOfRow(int startingSeatIdNumber, int numTicketsRequested)
 	{
 		boolean extendsPastEndOfRow = false;
-		if (numTicketsRequested > 0)
+		if(numTicketsRequested > 0)
 		{
 			int endingSeatIdNumber = numTicketsRequested + startingSeatIdNumber - 1;
 			int validEndingSeatIdNumber = 65 + numSeatsPerRow - 1;
 
-			if (endingSeatIdNumber > validEndingSeatIdNumber)
+			if(endingSeatIdNumber > validEndingSeatIdNumber)
 			{	// if the last seat is a number past the last valid seat in a row
 				extendsPastEndOfRow = true;
 			}
@@ -586,11 +586,11 @@ public class Auditorium
 	{
 		int numTicketsRequested = 0;
 		String str = "";
-		if (type == 1)
+		if(type == 1)
 		{
 			str = "Adult tickets: ";
 		}
-		else if (type == 2)
+		else if(type == 2)
 		{
 			str = "Child tickets: ";
 		}
@@ -602,7 +602,7 @@ public class Auditorium
 		System.out.print("Enter number of " + str);
 		numTicketsRequested = scanner.nextInt();
 
-		while (numTicketsRequested < 0)
+		while(numTicketsRequested < 0)
 		{
 			System.out.print("Enter a valid number of " + str);
 			numTicketsRequested = scanner.nextInt();
@@ -630,7 +630,7 @@ public class Auditorium
 		seatLetter = str.charAt(0);
 		seatIdNumber = (int) (seatLetter);
 
-		while (str.length() > 1 || seatIdNumber < 65 || seatIdNumber >= (65 + numSeatsPerRow))
+		while(str.length() > 1 || seatIdNumber < 65 || seatIdNumber >= (65 + numSeatsPerRow))
 		{
 			System.out.print("Enter a valid seat letter: ");
 			str = scanner.next().toUpperCase();
@@ -655,7 +655,7 @@ public class Auditorium
 		System.out.print("Enter row number: ");
 		rowNum = scanner.nextInt();
 		
-		while (rowNum < 1 || rowNum > this.numRows)
+		while(rowNum < 1 || rowNum > this.numRows)
 		{
 			System.out.print("Enter a valid row number: ");
 			rowNum = scanner.nextInt();
@@ -676,7 +676,7 @@ public class Auditorium
 		// First line - print the seat letters
 		char letter = '*';
 		System.out.print("   ");
-		for (int col = 0; col < numSeatsPerRow; col++)
+		for(int col = 0; col < numSeatsPerRow; col++)
 		{	// prints out the header for the columns (of letters A-Z)
 			letter = (char) (65 + col);
 			System.out.print(letter);
@@ -685,13 +685,13 @@ public class Auditorium
 		System.out.println();
 
 		// Iterate through all of the rows and print each char
-		for (int row = 0; row < numRows; row++)
+		for(int row = 0; row < numRows; row++)
 		{
 			System.out.printf("%2d ", (row + 1));	// print the row #
-			for (int col = 0; col < numSeatsPerRow; col++)
+			for(int col = 0; col < numSeatsPerRow; col++)
 			{
 				letter = seats[row][col];
-				if ( letter == 'A' || letter == 'C' || letter == 'S' )
+				if( letter == 'A' || letter == 'C' || letter == 'S' )
 				{	// change all letters to '#'
 					letter = '#';
 				}
@@ -716,9 +716,9 @@ public class Auditorium
 		File file = new File(seating_arrangement_file);
 		PrintWriter pout = new PrintWriter(file);
 		// iterate through all of the rows
-		for (int row = 0; row < numRows; row++)
+		for(int row = 0; row < numRows; row++)
 		{
-			for (int col = 0; col < numSeatsPerRow; col++)
+			for(int col = 0; col < numSeatsPerRow; col++)
 			{
 				// print the state of the array into the file
 				pout.print(seats[row][col]);
@@ -729,4 +729,4 @@ public class Auditorium
 		pout.close();
 	}
 
-}
+} // end of class Auditorium
