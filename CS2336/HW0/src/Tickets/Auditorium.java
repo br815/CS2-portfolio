@@ -729,4 +729,4 @@ public class Auditorium
 		pout.close();
 	}
 
-} // end of class Auditorium
+}	// end of class Auditorium
