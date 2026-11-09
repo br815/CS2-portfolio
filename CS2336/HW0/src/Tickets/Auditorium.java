@@ -306,7 +306,7 @@ public class Auditorium
 			// order can be processed
 			processOrder(rowIndex, startingSeatIdNumber, numAdultTicketsRequested, numChildTicketsRequested, numSeniorTicketsRequested);
 		}
-		/// System.out.println( "Seat Id:" + seatIdNumber );
+		/// System.out.println("Seat Id:" + seatIdNumber);
 		/// scanner.close();
 	}
 
