@@ -50,12 +50,12 @@ public class OrderManager
 
 
 	/*	Function 2:			manage()
-		Descr:				This function concatenates the customer information given by 4 private members into a string.
+		Descr:				This function ...
+							It throws java.io.IOException because it ...
 		Param:    			None.
-		Return:				An unnamed concatenated string. */
+		Return:				None. */
 	public void manage() throws java.io.IOException
 	{
-
 		final boolean DEBUG = false;
 		
 		read_preferred_customers();
@@ -73,11 +73,13 @@ public class OrderManager
 		read_customers();
 		if(numOrdinaryCustomers == 0)
 		{
-			System.exit(1); // No customers read from file /// Spec not clear on this
+			System.exit(1); // no customers read from file - spec not clear on this
 		}
 		if(DEBUG)
 		{
-			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers + " customers.length = " + customers.length);
+			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers 
+							+ " customers.length = " + customers.length);
+			
 			for(int i = 0; i < numOrdinaryCustomers; i++)
 			{
 				System.out.println(customers[i].toDebugString());
@@ -88,13 +90,15 @@ public class OrderManager
 		read_orders();
 		if(numOrders == 0)
 		{
-			if(DEBUG) System.out.println( "ERROR: No order found in file " + ORDER_FILE_NAME ); 
+			if(DEBUG) System.out.println("ERROR: No order found in file " + ORDER_FILE_NAME); 
 			System.exit(1);
 		}
 
 		if(DEBUG)
 		{
-			System.out.println("numOrders = " + numOrders + " orders.length = " + orders.length);
+			System.out.println("numOrders = " + numOrders 
+							+ " orders.length = " + orders.length);
+			
 			for(int i = 0; i < numOrders; i++)
 			{
 				System.out.println(orders[i].toString());
@@ -105,57 +109,62 @@ public class OrderManager
 		if(DEBUG)
 		{
 			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers
-				+ "  numPreferredCustomers = " + numPreferredCustomers
-				+ "  numOrders = " + numOrders);
+							+ "  numPreferredCustomers = " + numPreferredCustomers
+							+ "  numOrders = " + numOrders);
 		}
 		
 		processOrders();
 		
-		/// write output to files
+		// write output to files
 		if(numPreferredCustomers > 0)
 		{
-			writeOutputToFiles( preferredCustomers, PREFERRED_CUSTOMER_OUTPUT_FILE_NAME);
+			writeOutputToFiles(preferredCustomers, PREFERRED_CUSTOMER_OUTPUT_FILE_NAME);
 		}
-		writeOutputToFiles( customers, CUSTOMER_OUTPUT_FILE_NAME);
-		
-	} // end of method go()
+		writeOutputToFiles(customers, CUSTOMER_OUTPUT_FILE_NAME);
+	}
 
-	
- 	private void read_customers()  throws java.io.IOException {
 
+
+	/*	Function 3:			read_customers()
+		Descr:				This function ...
+							It throws java.io.IOException because it ...
+		Param:    			None.
+		Return:				None. */
+ 	private void read_customers() throws java.io.IOException
+	{
 		final boolean DEBUG = false;;
 
 		File file = new File(CUSTOMER_FILE_NAME);
 		if(!file.exists())
 		{
-			System.out.println( "ERROR: File " + CUSTOMER_FILE_NAME   
-					+ " does not exist" );
+			System.out.println("ERROR: File " + CUSTOMER_FILE_NAME + " does not exist");
 			System.exit(1);
 		}
 		
-		Scanner scanner = new Scanner( file );
+		Scanner scanner = new Scanner(file);
 		
 		int customerIndex = -1;
-		int lineNum = 0; // (NOT index): line being read from the file
-		String strLine = ""; // a line read from the input file 
+		// local variable lineNum considered unused by IDE bc boolean DEBUG is declared as "final" - and all use of lineNum is in DEBUG stmts
+		int lineNum = 0;		// (NOT index): line being read from the file
+		String strLine = "";	// a line read from the input file 
 
-		// A token is a maximal sequence of consecutive characters that 
-		// are not delimiters
+		// a token is a maximal sequence of consecutive characters that are not delimiters
 		String[] tokens = {"", "", "", ""}; // each string in strLine
 		StringTokenizer stringTokenizer;
 		int tokenCount = 0;
 		float amount_spent = 0.0F;
 		Customer customer;
 
-		while (scanner.hasNextLine()) {
+		while(scanner.hasNextLine())
+		{
 			strLine = scanner.nextLine().trim();
 			lineNum++;
 			if(strLine.length() == 0)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + lineNum + " has no data items.");
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has no data items.");
 				continue;
 			}
-			stringTokenizer = new StringTokenizer( strLine, " \t\n\r" );
+			stringTokenizer = new StringTokenizer(strLine, " \t\n\r");
 			tokenCount = 0;
 			tokens[0] = "";
 			tokens[1] = "";
@@ -175,11 +184,13 @@ public class OrderManager
 
 			if(tokenCount < 4)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + lineNum + " has too few data items.");
-			} else if(tokenCount > 4)
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too few data items.");
+			}
+			else if(tokenCount > 4)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + lineNum + " has too many data items.");
-			} else
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too many data items.");
+			}
+			else
 			{
 				customerIndex++;
 				amount_spent = Float.parseFloat(tokens[3]);
@@ -191,10 +202,10 @@ public class OrderManager
 				}
 				customers = addToArray(customers, customer);
 				
-				if(DEBUG)
-					System.out.println("Line # " + lineNum + " Customer index: " + customerIndex + "   " + customers[customerIndex]);
+				if(DEBUG) System.out.println("Line # " + lineNum 
+										+ " Customer index: " + customerIndex 
+										+ "   " + customers[customerIndex]);
 			}
-
 		}
 		
 		numOrdinaryCustomers = customerIndex + 1;
@@ -202,29 +213,34 @@ public class OrderManager
 
 		if(DEBUG)
 		{
-			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers + ". Closing file." );
+			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers + ". Closing file.");
 		}
-		
-	} // end of method read_customers()
+	}
 
- 	
-	private void read_preferred_customers()  throws java.io.IOException {
 
+
+	/*	Function 4:			read_preferred_customers()
+		Descr:				This function ...
+							It throws java.io.IOException because it ...
+		Param:    			None.
+		Return:				None. */
+	private void read_preferred_customers() throws java.io.IOException
+	{
 		final boolean DEBUG = false;
 
 		File file = new File(PREFERRED_CUSTOMER_FILE_NAME);
 		if(!file.exists())
 		{
-			if(DEBUG) System.out.println( "File " + PREFERRED_CUSTOMER_FILE_NAME + " does not exist" );
+			if(DEBUG) System.out.println("File " + PREFERRED_CUSTOMER_FILE_NAME + " does not exist");
 			return;
 		}
 		
-		Scanner scanner = new Scanner( file );
+		Scanner scanner = new Scanner(file);
 		
 		int customerIndex = -1;
-		int lineIndex = -1; // to identify the line# in file being read
-		String strLine = ""; // a line read from the input file 
-		String[] tokens = {"", "", "", "", ""}; // each string in strLine
+		int lineIndex = -1;						// to identify the line# in file being read
+		String strLine = "";					// a line read from the input file 
+		String[] tokens = {"", "", "", "", ""};	// each string in strLine
 		StringTokenizer stringTokenizer;
 		int tokenCount = 0;
 		float amount_spent = 0.0F;
@@ -234,15 +250,16 @@ public class OrderManager
 
 		Customer customer;
 
-		while (scanner.hasNextLine()) {
+		while(scanner.hasNextLine())
+		{
 			strLine = scanner.nextLine().trim();
 			lineIndex++;
 			if(strLine.length() == 0)
 			{
-				System.out.println( "Warning: Line #" + (lineIndex+1) + " has no data items.");
+				System.out.println("Warning: Line #" + (lineIndex+1) + " has no data items.");
 				continue;
 			}
-			stringTokenizer = new StringTokenizer( strLine, " \t\n\r" );
+			stringTokenizer = new StringTokenizer(strLine, " \t\n\r");
 			tokenCount = 0;
 			tokens[0] = "";
 			tokens[1] = "";
@@ -265,23 +282,26 @@ public class OrderManager
 
 			if(tokenCount < 5)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + (lineIndex+1) + " has too few data items.");
-			} else if(tokenCount > 5)
+				if(DEBUG) System.out.println("Warning: Line #" + (lineIndex+1) + " has too few data items.");
+			}
+			else if(tokenCount > 5)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + (lineIndex+1) + " has too many data items.");
-			} else
+				if(DEBUG) System.out.println("Warning: Line #" + (lineIndex+1) + " has too many data items.");
+			}
+			else
 			{
 				customerIndex++;
 				amount_spent = Float.parseFloat(tokens[3]);
 				if(tokens[4].endsWith("%"))
 				{
 					pct = tokens[4].substring(0, tokens[4].length()-1);
-					if(DEBUG) System.out.println( "pct=[" + pct + "]");
+					if(DEBUG) System.out.println("pct=[" + pct + "]");
 					discount_percent = Float.parseFloat(pct);
 					customer = new GoldCustomer(tokens[0], tokens[1], tokens[2], amount_spent, discount_percent);
-				} else
+				}
+				else
 				{
-					bonus_bucks = Float.parseFloat( tokens[4] );
+					bonus_bucks = Float.parseFloat(tokens[4]);
 					customer = new PlatinumCustomer(tokens[0], tokens[1], tokens[2], amount_spent, bonus_bucks);
 				}
 
@@ -294,50 +314,56 @@ public class OrderManager
 				if(DEBUG)
 					System.out.println("Line: " + lineIndex + " Customer # " + customerIndex + "   " + preferredCustomers[customerIndex]);
 			}
-
 		}
 		
 		numPreferredCustomers = customerIndex + 1;
 		scanner.close();
 		if(DEBUG)
 		{
-			System.out.println("numPreferredCustomers = " + numPreferredCustomers + ". Closing file." );
+			System.out.println("numPreferredCustomers = " + numPreferredCustomers + ". Closing file.");
 		}
-		///return customers;
-	} // end of method read_preferred_customers()
+		/// return customers;
+	}
 
 
-	private void read_orders()  throws java.io.IOException {
 
+	/*	Function 5:			read_orders()
+		Descr:				This function ...
+							It throws java.io.IOException because it ...
+		Param:    			None.
+		Return:				None. */
+	private void read_orders()  throws java.io.IOException
+	{
 		boolean DEBUG = false;
-		File file = new File(ORDER_FILE_NAME );
+		File file = new File(ORDER_FILE_NAME);
 		if(!file.exists())
 		{
-			if(DEBUG) System.out.println( "ERROR: File " + ORDER_FILE_NAME + " does not exist" );
+			if(DEBUG) System.out.println("ERROR: File " + ORDER_FILE_NAME + " does not exist");
 			System.exit(1);
 		}
 		
-		Scanner scanner = new Scanner( file );
+		Scanner scanner = new Scanner(file);
 		
 		int orderIndex = -1;
-		int lineNum = 0; // the line being read from the file
-		String strLine = ""; // a line read from the input file 
-		String[] tokens = {"", "", "", "", ""}; // each string in strLine
+		int lineNum = 0;						// the line being read from the file
+		String strLine = "";					// a line read from the input file 
+		String[] tokens = {"", "", "", "", ""};	// each string in strLine
 		StringTokenizer stringTokenizer;
 		int tokenCount = 0;
 		char size_letter = '*';
 		float price_per_square_inch = 0.0F;
 		int num_bottles_ordered = 0;
 		
-		while (scanner.hasNextLine()) {
+		while(scanner.hasNextLine())
+		{
 			strLine = scanner.nextLine().trim();
 			lineNum++;
 			if(strLine.length() == 0)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + lineNum + " has no data items.");
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has no data items.");
 				continue; // skip remainder of this iteration
 			}
-			stringTokenizer = new StringTokenizer( strLine, " \t\n\r" );
+			stringTokenizer = new StringTokenizer(strLine, " \t\n\r");
 			tokenCount = 0;
 			tokens[0] = "";
 			tokens[1] = "";
@@ -360,62 +386,58 @@ public class OrderManager
 
 			if(tokenCount < 5)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + lineNum + " has too few data items.");
-			} else if(tokenCount > 5)
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too few data items.");
+			}
+			else if(tokenCount > 5)
 			{
-				if(DEBUG) System.out.println( "Warning: Line #" + lineNum + " has too many data items.");
-			} else
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too many data items.");
+			}
+			else
 			{
 				// check if customer id is valid:
-				if( customerIndex(tokens[0], numOrdinaryCustomers, customers)
-						< 0 && customerIndex(tokens[0], numPreferredCustomers, 
-						preferredCustomers) < 0 )
+				if(customerIndex(tokens[0], numOrdinaryCustomers, customers) < 0 && customerIndex(tokens[0], numPreferredCustomers, preferredCustomers) < 0)
 				{
-					if(DEBUG) System.out.println( "Warning: Customer ID " + tokens[0] + " not found - skip line");
-					continue;
-				} 
-					
-
-				// validate price value
-				if(! isOkayPriceValue(tokens[3]))
-				{
-					if(DEBUG) System.out.println( "Warning: Price value has problem " + tokens[3] + " - skip line");
+					if(DEBUG) System.out.println("Warning: Customer ID " + tokens[0] + " not found - skip line");
 					continue;
 				}
-
-				// validate # of bottles value
-				if(! isUnsignedPositiveInteger(tokens[4]))
+				// validate price value
+				if(!isOkayPriceValue(tokens[3]))
 				{
-					if(DEBUG) System.out.println( "Warning: Number of bottles value has problem " + tokens[4] + " - skip line");
+					if(DEBUG) System.out.println("Warning: Price value has problem " + tokens[3] + " - skip line");
+					continue;
+				}
+				// validate # of bottles value
+				if(!isUnsignedPositiveInteger(tokens[4]))
+				{
+					if(DEBUG) System.out.println("Warning: Number of bottles value has problem " + tokens[4] + " - skip line");
 					continue;
 				}
 
 				price_per_square_inch = Float.parseFloat(tokens[3]);
 				num_bottles_ordered = Integer.parseInt(tokens[4]);
 
-				if(tokens[1].equals("S") || tokens[1].equals("M")
-					|| tokens[1].equals("L") )
+				if(tokens[1].equals("S") || tokens[1].equals("M") || tokens[1].equals("L"))
 				{
 					size_letter = tokens[1].charAt(0);
-				} else
+				}
+				else
 				{
-					if(DEBUG) System.out.println( "invalid size letter " + tokens[1] + " - skip line");
+					if(DEBUG) System.out.println("invalid size letter " + tokens[1] + " - skip line");
 					continue;
 				}
 
 				// validate drink type
-				if(tokens[2].equals("soda") || tokens[2].equals("tea")
-						|| tokens[2].equals("punch") )
-					{
-						// Ok
-					} else
-					{
-						if(DEBUG) System.out.println( "invalid drink type " + tokens[2] + " - skip line");
-						continue;
-					}
+				if(tokens[2].equals("soda") || tokens[2].equals("tea") || tokens[2].equals("punch"))
+				{
+					// Ok
+				}
+				else
+				{
+					if(DEBUG) System.out.println("invalid drink type " + tokens[2] + " - skip line");
+					continue;
+				}
 
-				Order order = new Order(tokens[0], num_bottles_ordered, 
-						tokens[2], size_letter, price_per_square_inch);
+				Order order = new Order(tokens[0], num_bottles_ordered, tokens[2], size_letter, price_per_square_inch);
 
 				orderIndex++;
 				if(DEBUG) System.out.println("Line No. " + lineNum + " Order index " + orderIndex + "   " + order);
@@ -427,18 +449,22 @@ public class OrderManager
 				orders = addToArray(orders, order);
 				
 				if(DEBUG) System.out.println("Line No. " + lineNum + " Order index " + orderIndex + "   " + orders[orderIndex]);
-				///System.out.println("Line: " + lineIndex + " Customer # " + customerIndex + "   " + customers[customerIndex]);
+				/// System.out.println("Line: " + lineIndex + " Customer # " + customerIndex + "   " + customers[customerIndex]);
 			}
-
 		}
 		
 		numOrders = orderIndex + 1;
 		scanner.close();
-		
-	} // end of method read_orders()
+	}
 
 
-// Get index of the array element that matches the supplied customerID
+
+	/*	Function 6:			customerIndex()
+		Descr:				This function gets the index of the array element that matches the supplied customer ID.
+		Param:    			String customerID, int numCustomers, Customer[] customers
+							Supplied customer ID, total size of array of Customers, array of Customers.
+		Return:				int i or -1
+							The matching array index of customerID, or -1 as a sentinel value. */
 	public int customerIndex(String customerID, int numCustomers, Customer[] customers)
 	{
 		final boolean DEBUG = false; 
@@ -446,19 +472,24 @@ public class OrderManager
 		int i = 0;
 		for(i = 0; i < numCustomers; i++)
 		{
-			if( customerID.equals( customers[i].getGuestID() ) )
+			if(customerID.equals(customers[i].getGuestID()))
 			{
 				if(DEBUG) System.out.println("***  i = " + i + "   customerID: " + customerID + "  customers[i].getGuestID(): " + customers[i].getGuestID());
 				return i;
 			}
 		}
-		
 		// if here then match not found
 		return -1;
 	}
 
 
-	private void processOrders() {
+
+	/*	Function 7:			processOrders()
+		Descr:				This function ...
+		Param:    			None.
+		Return:				None. */
+	private void processOrders()
+	{
 		boolean DEBUG = false;
 		boolean DEBUG2 = false;
 
@@ -468,7 +499,7 @@ public class OrderManager
 		Customer c2;
 		float order_total_price = 0;
 		
-		for( int i = 0; i < numOrders; i++ )
+		for(int i = 0; i < numOrders; i++)
 		{
 			customer_id = "";
 			index = -1;
@@ -476,9 +507,8 @@ public class OrderManager
 			order_total_price = orders[i].getTotalPrice();
 
 			customer_id = orders[i].getCustomerID();
-			if(DEBUG) System.out.print("i = " + i + " " + customer_id );
-			index = customerIndex(customer_id, 
-					numOrdinaryCustomers, customers);
+			if(DEBUG) System.out.print("i = " + i + " " + customer_id);
+			index = customerIndex(customer_id, numOrdinaryCustomers, customers);
 			
 			if(index >= 0)
 			{
@@ -488,13 +518,14 @@ public class OrderManager
 				if(DEBUG2) System.out.println("\nafter process, customer: " + customer.toDebugString());
 				if(DEBUG2) System.out.println("after process, c2: " + c2.toDebugString() + "\n");
 
-				// if(cc.isProcessedLastOrder() == false && [cc.isPromoted() == true] && c2.isInitialized() == true) : order processed by c2 - after this c2 should be used, not cc. Condition checked within [] is redundant 
+				// if(cc.isProcessedLastOrder() == false && [cc.isPromoted() == true] && c2.isInitialized() == true) : order processed by c2 - after this c2 should be used, not cc. Condition checked within [] is redundant.
 				if(customer.isProcessedLastOrder() == false && customer.isPromoted() == true)
 				{
 					if(c2.isInitialized() == false)
 					{
 						System.out.println("***** AN ERROR HAS OCCURED. Calling Customer was promoted but the returned customer is not initialized (should be Gold or Platinum Customer). *****");
-					} else
+					}
+					else
 					{
 						// remove customer from the array and add c2 to the preferred array
 						customers = removeFromArray(customers, index);
@@ -525,11 +556,10 @@ public class OrderManager
 						}
 					}
 				} // done checking for promoted customer
-
-			} else // now check the preferred customers array
+			}
+			else // now check the preferred customers array
 			{
-				index = customerIndex(customer_id, 
-					numPreferredCustomers, preferredCustomers);
+				index = customerIndex(customer_id, numPreferredCustomers, preferredCustomers);
 
 				// customer was found in the preferred customers array
 				customer = preferredCustomers[index];
@@ -542,7 +572,8 @@ public class OrderManager
 					if(c2.isInitialized() == false)
 					{
 						System.out.println("***** AN ERROR HAS OCCURED. Calling Customer was promoted but the returned customer is not initialized (should be a Platinum Customer). *****");
-					} else
+					}
+					else
 					{
 						// replace the old customer with the promoted c2
 						preferredCustomers[index] = c2;
@@ -558,17 +589,21 @@ public class OrderManager
 				} // done checking for promoted customer
 			} // done checking in p.customers array
 			
-			///total_price = orders[i].getTotalPrice();
+			/// total_price = orders[i].getTotalPrice();
 			if(DEBUG) System.out.println("  index = " + index + " " + customer.getGuestID() + " " + order_total_price);
-
 		} // end of for loop iteration for current order
 	}
-	
 
 
- 	// remove the element at position identified by index. Shift subsequent elements to the left
- 	private Customer[] removeFromArray(Customer[] customers, int index) {
 
+	/*	Function 8:			removeFromArray()
+		Descr:				This function removes the element at the position identified by index & shifts subsequent elements to the left.
+		Param:    			Customer[] customers, int index
+							Array of Customers, index for element to be removed.
+		Return:				Customer[] customers
+							Modified array of Customers. */
+ 	private Customer[] removeFromArray(Customer[] customers, int index)
+	{
  		boolean DEBUG = false;
 
  		int oldArrayLength = customers.length;
@@ -591,45 +626,57 @@ public class OrderManager
 			if(i < index)
 			{
 				customers[i] = temp[i];
-			} else
+			}
+			else
 			{
 				customers[i] = temp[i+1];
 			}
 			if(DEBUG) System.out.println("*i = " + i + "  " + customers[i].toDebugString());
 		}
-		
 		return customers;
+ 	}
 
- 	} // end of removeFromArray()
 
- 	private void writeOutputToFiles(Customer[] outputCustomers, 
- 			String strOutputFileName) throws java.io.IOException {
- 		
+
+	/*	Function 9:			writeOutputToFiles()
+		Descr:				This function ...
+							It throws java.io.IOException because it ...
+		Param:    			Customer[] outputCustomers, String strOutputFileName
+							Array of Customers to be written to file, name of file to be written to.
+		Return:				None. */
+ 	private void writeOutputToFiles(Customer[] outputCustomers, String strOutputFileName) throws java.io.IOException
+	{
 		File file = new File(strOutputFileName);
 		if(file.exists())
 		{
-			// Generally warn if it is okay to overwrite existing file 
+			// generally warn if it is okay to overwrite existing file 
 		}
 		
-		PrintWriter pw = new PrintWriter( file );
+		PrintWriter pw = new PrintWriter(file);
 		int arrayLength = outputCustomers.length;
 		
 		if(arrayLength > 0)
 		{
 			for(int i = 0; i < arrayLength-1; i++)
 			{
-				pw.println(outputCustomers[i].toOutputString());
+				pw.println(outputCustomers[i].toOutputString());	// calls Customer method toOutputString()
 			}
 
 			// no newline character at the very last line in the file
 			pw.print(outputCustomers[arrayLength - 1].toOutputString());
 		}
-		
 		pw.close();
  	}
- 	
- 	private Customer[] addToArray(Customer[] customers, Customer customer) {
 
+
+
+	/*	Function 10:		addToArray()
+		Descr:				This function ...
+		Param:    			Customer[] customers, Customer customer
+							...
+		Return:				None. */
+ 	private Customer[] addToArray(Customer[] customers, Customer customer)
+	{
  		boolean DEBUG = false;
 
  		int oldArrayLength = customers.length;
@@ -641,7 +688,8 @@ public class OrderManager
 			customers = new Customer[1];
 			customers[0] = customer;
 			if(DEBUG) System.out.println("0:  " + customers[0].toDebugString());
-		} else
+		}
+		else
 		{
 			Customer[] temp = new Customer[newArrayLength];
 			// store the newest customer at the last position of temp array 
@@ -664,14 +712,14 @@ public class OrderManager
 				if(DEBUG) System.out.println("*i = " + i + "  " + customers[i].toDebugString());
 			}
 		}
-		
 		return customers;
+ 	}
 
- 	} // end of addToArray()
 
- 	
 
- 	private Order[] addToArray(Order[] orders, Order order) {
+
+ 	private Order[] addToArray(Order[] orders, Order order)
+	{
 
  		boolean DEBUG = false;
 
@@ -715,7 +763,8 @@ public class OrderManager
 	
 
 	// For use with price. May have a . and + sign
-	public static boolean isOkayPriceValue(String str) {
+	public static boolean isOkayPriceValue(String str)
+	{
 
 		boolean valid = true;
 		char ch = '*';
@@ -727,9 +776,9 @@ public class OrderManager
 			for(int i = 0; i < str.length(); i++)
 			{
 				ch = str.charAt(i);
-				if(! Character.isDigit(ch)) 
+				if(!Character.isDigit(ch)) 
 				{
-					if(ch != '+' && ch!='.')
+					if(ch != '+' && ch != '.')
 					{
 						valid = false;
 						break;
@@ -746,8 +795,8 @@ public class OrderManager
 	}
 	
 	// "5" is valid but "5.", "5.0", "+5" are not
-	public static boolean isUnsignedPositiveInteger(String str) {
-
+	public static boolean isUnsignedPositiveInteger(String str)
+	{
 		char ch = '*';
 		int len = str.length();
 
@@ -759,7 +808,7 @@ public class OrderManager
 			for(int i = 0; i < len; i++)
 			{
 				ch = str.charAt(i);
-				if(! Character.isDigit(ch))
+				if(!Character.isDigit(ch))
 				{
 					return false;
 				}

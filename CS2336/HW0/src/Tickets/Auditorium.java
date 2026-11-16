@@ -290,7 +290,7 @@ public class Auditorium
 		{
 			// check for alternate seats
 			int alt_SeatIdNumber = altSeatIdNumber(scanner, rowIndex, numTotalTicketsRequested);
-			if(alt_SeatIdNumber > -1)  // alternate seats were found
+			if(alt_SeatIdNumber > -1) // alternate seats were found
 			{
 				// alternate seats are available, so the program can proceed to reserve the seats
 				okayToProcessOrder = true;
