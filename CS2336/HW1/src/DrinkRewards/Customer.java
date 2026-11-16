@@ -142,7 +142,8 @@ public class Customer
 		if(cents < 10 )
 		{
 			str_amount = dollars + ".0" + cents;
-		} else
+		}
+		else
 		{
 			str_amount = dollars + "." + cents;
 		}
@@ -234,7 +235,6 @@ public class Customer
 			processedLastOrder = false;
 			/// thresholdForPromotion = 50.00F;
 			initialized = false;
-			
 		}
 	}
 
@@ -249,11 +249,11 @@ public class Customer
 */
 
 
-	
+
 	/*	Functions 20-21:	getsDiscountOrReward(), getSaleFactor()
-		Descr:				These 2 functions are accessors that return static values.
+		Descr:				These 2 functions are accessors that return set values.
 		Param:    			None for all.
-		Return:				The static values returned by each accessor. */
+		Return:				The set values returned by each accessor. */
 	public boolean getsDiscountOrReward()
 	{
 		return false;
@@ -296,7 +296,7 @@ public class Customer
 		{
 			lastRequestedOrderAmountWasValid = true;
 		}
-		
+
 		return lastRequestedOrderAmountWasValid;
 	}
 

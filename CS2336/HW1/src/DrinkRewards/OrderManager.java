@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	OrderManager.java:		This source file defines the OrderManager class, which includes ... function definitions. */
+	OrderManager.java:		This source file defines the OrderManager class, which includes 13 function definitions. */
 
 package DrinkRewards;
 
@@ -673,8 +673,9 @@ public class OrderManager
 	/*	Function 10:		addToArray()
 		Descr:				This function ...
 		Param:    			Customer[] customers, Customer customer
-							...
-		Return:				None. */
+							Array of Customers, an individual Customer to be inserted.
+		Return:				Customer[] customers
+							Modified array of Customers. */
  	private Customer[] addToArray(Customer[] customers, Customer customer)
 	{
  		boolean DEBUG = false;
@@ -717,10 +718,14 @@ public class OrderManager
 
 
 
-
+	/*	Function 11:		addToArray() (overloaded)
+		Descr:				This overloading of addToArray() ...
+		Param:    			Order[] orders, Order order
+							Array of Orders, an individual Order to be inserted.
+		Return:				Order[] orders
+							Modified array of Orders. */
  	private Order[] addToArray(Order[] orders, Order order)
 	{
-
  		boolean DEBUG = false;
 
  		int oldArrayLength = orders.length;
@@ -732,7 +737,8 @@ public class OrderManager
 			orders = new Order[1];
 			orders[0] = order;
 			if(DEBUG) System.out.println("0:  " + orders[0].toString());
-		} else
+		}
+		else
 		{
 			Order[] temp = new Order[newArrayLength];
 			// store the newest element at the last position of temp array 
@@ -755,22 +761,27 @@ public class OrderManager
 				if(DEBUG) System.out.println("*i = " + i + "  " + orders[i].toString());
 			}
 		}
-		
 		return orders;
+ 	}
 
- 	} // end of addToArray()
 
-	
 
-	// For use with price. May have a . and + sign
+	/*	Function 12:		isOkayPriceValue()
+		Descr:				This static function is associated with the class rather than any instantiated object.
+							It is for use with prices, which may have a . or + sign as non-digit characters.
+							All other characters must be digits.
+		Param:    			String str
+							A string which may be valid as a price value.
+		Return:				true or false
+							Boolean value indicating validity of the string as a price value. */
 	public static boolean isOkayPriceValue(String str)
 	{
-
 		boolean valid = true;
 		char ch = '*';
 		double d;
 
-		try {
+		try
+		{
 			d = Double.parseDouble(str);
 
 			for(int i = 0; i < str.length(); i++)
@@ -783,27 +794,36 @@ public class OrderManager
 						valid = false;
 						break;
 					}
-				} // end of if
-			} // end of for
-
-		} catch(Exception e)
+				}
+			}
+		}
+		catch(Exception e)
 		{
 			valid = false;
 		}
-
 		return valid;
 	}
-	
-	// "5" is valid but "5.", "5.0", "+5" are not
+
+
+
+	/*	Function 13:		isUnsignedPositiveInteger()
+		Descr:				This static function is associated with the class rather than any instantiated object.
+							It is for use with strings which are plain numbers, with no other characters.
+							For example, "5" is valid but "5.", "5.0", "+5" are not.
+		Param:    			String str
+							A string which may be valid as an unsigned integer (a plain number).
+		Return:				true or false
+							Boolean value indicating validity of the string as an unsigned integer. */
 	public static boolean isUnsignedPositiveInteger(String str)
 	{
 		char ch = '*';
 		int len = str.length();
 
-		if(len < 1) 
+		if(len < 1)
 		{
 			return false;
-		} else
+		}
+		else
 		{
 			for(int i = 0; i < len; i++)
 			{
@@ -814,12 +834,8 @@ public class OrderManager
 				}
 			}
 		}
-		
 		// if here then none of the false scenarios occurred
 		return true;
 	}
 
-	
-	
-	
 } // end of class OrderManager
