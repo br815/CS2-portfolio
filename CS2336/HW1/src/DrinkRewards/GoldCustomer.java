@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	GoldCustomer.java:		This source file defines the GoldCustomer subclass of Customer, which includes 11 function definitions. */
+	GoldCustomer.java:		This source file defines the GoldCustomer subclass of Customer, which includes 11 method definitions. */
 
 package DrinkRewards;
 
@@ -10,7 +10,7 @@ package DrinkRewards;
 // Beginning of subclass definition of GoldCustomer
 public class GoldCustomer extends Customer
 {
-	// package-wide member constants
+	// package-wide member constants (static - associated with the class rather than any instantiated object)
 	public static final float GOLD_MIN_AMOUNT_SPENT = 50.0f;
 	public static final int GOLD_MIN_AMOUNT_SPENT_INT = 50_000;
 
@@ -26,9 +26,9 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function Type:		constructor
-		Descr:				This constructor uses super() to invoke the constructor
-							of this subclass's superclass, Customer().
+	/*	Method 1:			Constructor.
+		Descr:				This constructor uses super() to invoke
+							the constructor of this subclass's superclass, Customer().
 		Param:    			None.
 		Return:				None, initializes a GoldCustomer object. */
 	GoldCustomer()
@@ -38,9 +38,9 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function Type:		constructor (overloaded)
-		Descr:				This overloading of the constructor uses super() to invoke the overloaded constructor
-							of this subclass's superclass, Customer().
+	/*	Method 2:			Constructor (overloaded).
+		Descr:				This overloaded constructor uses super() to invoke
+							the overloaded constructor of this subclass's superclass, Customer().
 		Param:    			String guest_ID, String first_name, String last_name, float amount_spent, float discount_percentage
 							Values for the members of a Customer object.
 							All these params but 1 are supplied to the superclass's overloaded constructor,
@@ -48,16 +48,15 @@ public class GoldCustomer extends Customer
 		Return:				None, initializes a GoldCustomer object. */
 	public GoldCustomer(String guest_ID, String first_name, String last_name, float amount_spent, float discount_percentage)
 	{
-
 		super(guest_ID, first_name, last_name, amount_spent);
 		discountPercentage = discount_percentage;
 	}
 
 
 
-	/*	Function Type:		constructor (overloaded)
-		Descr:				This overloading of the constructor uses super() to invoke the overloaded constructor
-							of this subclass's superclass, Customer().
+	/*	Method 3:			Constructor (overloaded).
+		Descr:				This overloaded constructor uses super() to invoke
+							the overloaded constructor of this subclass's superclass, Customer().
 		Param:    			Customer fromCustomer
 							A Customer object.
 							It is supplied to this constructor so that the Customer's members can be accessed (using its accessors)
@@ -71,8 +70,8 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function 4:			toDebugString()
-		Descr:				This function concatenates customer information
+	/*	Method 4:			toDebugString()
+		Descr:				This method concatenates customer information
 							given by its corresponding superclass method, along with discountPercentage,
 							into a string for debugging.
 		Param:    			None.
@@ -85,8 +84,8 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function 5:			toOutputString()
-		Descr:				This function concatenates customer information
+	/*	Method 5:			toOutputString()
+		Descr:				This method concatenates customer information
 							given by its corresponding superclass method, along with strDiscount,
 							first converting the float for discountPercentage to strDiscount for output.
 		Param:    			None.
@@ -100,8 +99,8 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Functions 6-8:		getDiscountPercentage(), getsDiscountOrReward(), getSaleFactor()
-		Descr:				These 3 functions are accessors.
+	/*	Methods 6-8:		getDiscountPercentage(), getsDiscountOrReward(), getSaleFactor()
+		Descr:				These 3 methods are accessors.
 		Param:    			None for all.
 		Return:				The corresponding members accessed by each accessor. */
 	public float getDiscountPercentage()
@@ -110,7 +109,7 @@ public class GoldCustomer extends Customer
 	}
 	public boolean getsDiscountOrReward()
 	{
-		return true;	// this accessor returns a static value
+		return true;	// this accessor returns a set value
 	}
 	public float getSaleFactor()
 	{
@@ -122,8 +121,8 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function 9:			setDiscountPercentage()
-		Descr:				This function is a mutator.
+	/*	Method 9:			setDiscountPercentage()
+		Descr:				This method is a mutator.
 		Param:    			The corresponding member mutated by this mutator.
 		Return:				None. */
 	public void setDiscountPercentage(float discount_percentage)
@@ -133,10 +132,11 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function 10:		promote()
-		Descr:				This function promotes a base Customer object to GoldCustomer.
+	/*	Method 10:			promote()
+		Descr:				This method promotes a base Customer object to GoldCustomer.
 							`If c is qualified then promotes c from base customer level to gold level.`
 							`goldCustomer is the new object created by this method.`
+							This is a static method, so it can be called without creating an object of this class.
 		Param:    			float order_total_price, Customer fromCustomer
 							Amount ordered by the customer, and a base Customer object representing the customer.
 		Return:				GoldCustomer promotedGoldCustomer
@@ -155,7 +155,7 @@ public class GoldCustomer extends Customer
 			float tentativeAmountSpent = fromCustomer.getAmountSpent() + order_total_price*fromCustomer.getSaleFactor();
 			int int_tentativeAmountSpent = (int) (Math.round(tentativeAmountSpent*1000.0f)); // is it 49_995?
 
-			if( int_tentativeAmountSpent >= (GOLD_MIN_AMOUNT_SPENT_INT - 5) )
+			if(int_tentativeAmountSpent >= (GOLD_MIN_AMOUNT_SPENT_INT - 5))
 			{
 				// ok to promote - create object and process order at the same time
 				int previous_amount_spent = Math.round(fromCustomer.getAmountSpent()*1000.0f);
@@ -190,8 +190,8 @@ public class GoldCustomer extends Customer
 
 
 
-	/*	Function 11:		processOrder()
-		Descr:				This function processes a customer's order in accordance with their customer status.
+	/*	Method 11:			processOrder()
+		Descr:				This method processes a customer's order in accordance with their customer status.
 							`example  :   c2 = gc.processOrder(10.00f);`
 							`if(gc.isProcessedLastOrder() == true && gc.isPromoted() == false) : order processed successfully`
 							`if(gc.isProcessedLastOrder() == false && [gc.isPromoted() == true] && c2.isInitialized() == true) : order processed by c2 - after this c2 should be used, not cc. Condition checked within [] is redundant`
@@ -203,7 +203,6 @@ public class GoldCustomer extends Customer
 							promotedCustomer = PlatinumCustomer subclass of Customer. */
 	public Customer processOrder(float order_total_price)
 	{
-
 		processedLastOrder = false;
 
 		// if object was already promoted then order should not be processed as a base customer 
@@ -224,7 +223,7 @@ public class GoldCustomer extends Customer
 		float tentativeAmountSpent = getAmountSpent() + order_total_price*getSaleFactor();
 		int int_tentativeAmountSpent = (int) (Math.round(tentativeAmountSpent*1000.0f)); 
 		
-		if( int_tentativeAmountSpent < (GoldCustomer.GOLD_MIN_AMOUNT_SPENT_LEVEL2_INT - 5) )
+		if(int_tentativeAmountSpent < (GoldCustomer.GOLD_MIN_AMOUNT_SPENT_LEVEL2_INT - 5))
 		{
 			setAmountSpent(tentativeAmountSpent);
 			processedLastOrder = true;
@@ -237,7 +236,7 @@ public class GoldCustomer extends Customer
 		tentativeAmountSpent = getAmountSpent() + order_total_price*getSaleFactor();
 		int_tentativeAmountSpent = (int) (Math.round(tentativeAmountSpent*1000.0f)); 
 
-		if( int_tentativeAmountSpent < (GoldCustomer.GOLD_MIN_AMOUNT_SPENT_LEVEL3_INT - 5) )
+		if(int_tentativeAmountSpent < (GoldCustomer.GOLD_MIN_AMOUNT_SPENT_LEVEL3_INT - 5))
 		{
 			setAmountSpent(tentativeAmountSpent);
 			processedLastOrder = true;

@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	OrderManager.java:		This source file defines the OrderManager class, which includes 13 function definitions. */
+	OrderManager.java:		This source file defines the OrderManager class, which includes 13 method definitions. */
 
 package DrinkRewards;
 
@@ -15,27 +15,24 @@ import java.util.StringTokenizer;
 // Beginning of class definition of OrderManager
 public class OrderManager
 {
-	// member constants
-	// names of input files to be read in
-	private static final String CUSTOMER_FILE_NAME = "src/customer.dat";
+	// class-specific member constants (static - associated with the class rather than any instantiated object)
+	private static final String CUSTOMER_FILE_NAME = "src/customer.dat";					// names of input files to be read in
 	private static final String PREFERRED_CUSTOMER_FILE_NAME = "src/preferred.dat";
 	private static final String ORDER_FILE_NAME = "src/orders.dat";
-	// names of output files to be written to
-	private static final String CUSTOMER_OUTPUT_FILE_NAME = "src/customer.dat";
+	private static final String CUSTOMER_OUTPUT_FILE_NAME = "src/customer.dat";				// names of output files to be written to
 	private static final String PREFERRED_CUSTOMER_OUTPUT_FILE_NAME = "src/preferred.dat";
 	
-	// member variables
+	// class-specific member variables & arrays
 	private int numOrdinaryCustomers;
 	private int numPreferredCustomers;
 	private int numOrders;
-	// member arrays
 	private Customer[] customers;
 	private Customer[] preferredCustomers;
 	private Order[] orders;
 
 
 
-	/*	Function Type:		constructor
+	/*	Method 1:			Constructor.
 		Descr:				This constructor initializes class members.
 		Param:    			None.
 		Return:				None, initializes an OrderManager object. */
@@ -49,8 +46,8 @@ public class OrderManager
 
 
 
-	/*	Function 2:			manage()
-		Descr:				This function ...
+	/*	Method 2:			manage()
+		Descr:				This method ...
 							It throws java.io.IOException because it ...
 		Param:    			None.
 		Return:				None. */
@@ -125,8 +122,8 @@ public class OrderManager
 
 
 
-	/*	Function 3:			read_customers()
-		Descr:				This function ...
+	/*	Method 3:			read_customers()
+		Descr:				This method ...
 							It throws java.io.IOException because it ...
 		Param:    			None.
 		Return:				None. */
@@ -219,8 +216,8 @@ public class OrderManager
 
 
 
-	/*	Function 4:			read_preferred_customers()
-		Descr:				This function ...
+	/*	Method 4:			read_preferred_customers()
+		Descr:				This method ...
 							It throws java.io.IOException because it ...
 		Param:    			None.
 		Return:				None. */
@@ -327,8 +324,8 @@ public class OrderManager
 
 
 
-	/*	Function 5:			read_orders()
-		Descr:				This function ...
+	/*	Method 5:			read_orders()
+		Descr:				This method ...
 							It throws java.io.IOException because it ...
 		Param:    			None.
 		Return:				None. */
@@ -459,8 +456,8 @@ public class OrderManager
 
 
 
-	/*	Function 6:			customerIndex()
-		Descr:				This function gets the index of the array element that matches the supplied customer ID.
+	/*	Method 6:			customerIndex()
+		Descr:				This method gets the index of the array element that matches the supplied customer ID.
 		Param:    			String customerID, int numCustomers, Customer[] customers
 							Supplied customer ID, total size of array of Customers, array of Customers.
 		Return:				int i or -1
@@ -484,8 +481,8 @@ public class OrderManager
 
 
 
-	/*	Function 7:			processOrders()
-		Descr:				This function ...
+	/*	Method 7:			processOrders()
+		Descr:				This method ...
 		Param:    			None.
 		Return:				None. */
 	private void processOrders()
@@ -596,8 +593,8 @@ public class OrderManager
 
 
 
-	/*	Function 8:			removeFromArray()
-		Descr:				This function removes the element at the position identified by index & shifts subsequent elements to the left.
+	/*	Method 8:			removeFromArray()
+		Descr:				This method removes the element at the position identified by index & shifts subsequent elements to the left.
 		Param:    			Customer[] customers, int index
 							Array of Customers, index for element to be removed.
 		Return:				Customer[] customers
@@ -638,8 +635,8 @@ public class OrderManager
 
 
 
-	/*	Function 9:			writeOutputToFiles()
-		Descr:				This function ...
+	/*	Method 9:			writeOutputToFiles()
+		Descr:				This method ...
 							It throws java.io.IOException because it ...
 		Param:    			Customer[] outputCustomers, String strOutputFileName
 							Array of Customers to be written to file, name of file to be written to.
@@ -670,8 +667,8 @@ public class OrderManager
 
 
 
-	/*	Function 10:		addToArray()
-		Descr:				This function ...
+	/*	Method 10:			addToArray()
+		Descr:				This method ...
 		Param:    			Customer[] customers, Customer customer
 							Array of Customers, an individual Customer to be inserted.
 		Return:				Customer[] customers
@@ -713,13 +710,14 @@ public class OrderManager
 				if(DEBUG) System.out.println("*i = " + i + "  " + customers[i].toDebugString());
 			}
 		}
+
 		return customers;
  	}
 
 
 
-	/*	Function 11:		addToArray() (overloaded)
-		Descr:				This overloading of addToArray() ...
+	/*	Method 11:			addToArray() (overloaded)
+		Descr:				This overloaded method ...
 		Param:    			Order[] orders, Order order
 							Array of Orders, an individual Order to be inserted.
 		Return:				Order[] orders
@@ -761,15 +759,16 @@ public class OrderManager
 				if(DEBUG) System.out.println("*i = " + i + "  " + orders[i].toString());
 			}
 		}
+
 		return orders;
  	}
 
 
 
-	/*	Function 12:		isOkayPriceValue()
-		Descr:				This static function is associated with the class rather than any instantiated object.
-							It is for use with prices, which may have a . or + sign as non-digit characters.
+	/*	Method 12:			isOkayPriceValue()
+		Descr:				This method is for use with prices, which may have a . or + sign as non-digit characters.
 							All other characters must be digits.
+							This is a static method, so it can be called without creating an object of this class.
 		Param:    			String str
 							A string which may be valid as a price value.
 		Return:				true or false
@@ -801,15 +800,16 @@ public class OrderManager
 		{
 			valid = false;
 		}
+
 		return valid;
 	}
 
 
 
-	/*	Function 13:		isUnsignedPositiveInteger()
-		Descr:				This static function is associated with the class rather than any instantiated object.
-							It is for use with strings which are plain numbers, with no other characters.
+	/*	Method 13:			isUnsignedPositiveInteger()
+		Descr:				This method is for use with strings which are plain numbers, with no other characters.
 							For example, "5" is valid but "5.", "5.0", "+5" are not.
+							This is a static method, so it can be called without creating an object of this class.
 		Param:    			String str
 							A string which may be valid as an unsigned integer (a plain number).
 		Return:				true or false
@@ -834,6 +834,7 @@ public class OrderManager
 				}
 			}
 		}
+
 		// if here then none of the false scenarios occurred
 		return true;
 	}

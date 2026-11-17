@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	Order.java:				This source file defines the Order class, which includes 6 function definitions. */
+	Order.java:				This source file defines the Order class, which includes 6 method definitions. */
 
 package DrinkRewards;
 
@@ -18,7 +18,7 @@ public class Order
 
 
 
-	/*	Function Type:		constructor
+	/*	Method 1:			Constructor.
 		Descr:				This constructor sets class members to the parameters supplied.
 		Param:    			String customer_ID, int num_bottles_ordered, Drink drink_ordered
 							Values for the members of an Order object.
@@ -33,8 +33,8 @@ public class Order
 
 
 
-	/*	Function Type:		constructor (overloaded)
-		Descr:				This overloading of the constructor uses the Drink constructor to set class members to the parameters supplied.
+	/*	Method 2:			Constructor (overloaded).
+		Descr:				This overloaded constructor uses the Drink constructor to set class members to the parameters supplied.
 		Param:    			String customer_ID, int num_bottles_ordered, String drink_type_name, char drink_size_letter, float drink_price_per_square_inch
 							Values for the members of an Order object.
 							Some are members of a Drink object.
@@ -49,8 +49,8 @@ public class Order
 
 
 
-	/*	Functions 3-5:		getCustomerID(), getTotalPrice(), getNumBottlesOrdered()
-		Descr:				These 3 functions are accessors.
+	/*	Methods 3-5:		getCustomerID(), getTotalPrice(), getNumBottlesOrdered()
+		Descr:				These 3 methods are accessors.
 		Param:    			None for all.
 		Return:				The corresponding members accessed by each accessor. */
 	public String getCustomerID()
@@ -68,8 +68,8 @@ public class Order
 
 
 
-	/*	Function 6:			toString()
-		Descr:				This function concatenates drink information into a string.
+	/*	Method 6:			toString()
+		Descr:				This method concatenates drink information into a string.
 		Param:    			None.
 		Return:				An unnamed concatenated string. */
 	public String toString()

@@ -1,7 +1,7 @@
 /*	Author:				Bushra Rahman
 	Course:				CS 2336 (Spring 2020)
    	Date:				1/30/2020
-	Auditorium.java:	This source file defines the Auditorium class, which includes 18 function definitions. */
+	Auditorium.java:	This source file defines the Auditorium class, which includes 18 method definitions. */
 
 package Tickets;
 
@@ -34,8 +34,8 @@ public class Auditorium
 
 
 	
-	/*	Function Type:		constructor
-		Descr:				This function initializes row & column member variables & the array of seats.
+	/*	Method 1:			Constructor.
+		Descr:				This method initializes row & column member variables & the array of seats.
 							It throws java.io.IOException because it calls read_seating_arrangement_file() 
 							and does not use try/catch to handle exceptions from read_seating_arrangement_file() here in the constructor.
 		Param:    			None.
@@ -62,11 +62,11 @@ public class Auditorium
 
 
 
-	/*	Function 2:			read_seating_arrangement_file()
-		Descr:				This function is called by the constructor.
+	/*	Method 2:			read_seating_arrangement_file()
+		Descr:				This method is called by the constructor.
 							It reads the input file & calculates variables at the end of the read.
 							It throws java.io.IOException because it attempts input file handling 
-							and does not use try/catch to handle exceptions from input file handling here in this function.
+							and does not use try/catch to handle exceptions from input file handling here in this method.
 		Param:    			None.
 		Return:				None. */
 	private void read_seating_arrangement_file() throws java.io.IOException
@@ -165,8 +165,8 @@ public class Auditorium
 
 
 	
-	/*	Function 3:			displayMainMenu()
-		Descr:				This function is the main menu & driver method of this class.
+	/*	Method 3:			displayMainMenu()
+		Descr:				This method is the main menu & driver method of this class.
 							It throws java.io.IOException because it calls writeToFile() 
 							and does not use try/catch to handle exceptions from writeToFile() here in the driver method.
 		Param:    			None.
@@ -187,9 +187,9 @@ public class Auditorium
 
 				optionSelected = scanner.nextInt();
 
-				if(optionSelected == 1)					// "Reserve Seats" option is chosen
+				if(optionSelected == 1)						// "Reserve Seats" option is chosen
 				{
-					promptReservationMenu(scanner);			// show reservation menu and pass scanner to the function
+					promptReservationMenu(scanner);			// show reservation menu and pass scanner to the method
 					okayToLoop = isSeatsAvailable();		// check if there are still open seats
 				}
 			} while(optionSelected != 2 && okayToLoop);
@@ -207,8 +207,8 @@ public class Auditorium
 
 
 
-	/*	Function 4:			isSeatsAvailable()
-		Descr:				This function is called by displayMainMenu().
+	/*	Method 4:			isSeatsAvailable()
+		Descr:				This method is called by displayMainMenu().
 							It checks if Auditorium still has any seats available.
 		Param:    			None.
 		Return:				true OR false
@@ -229,8 +229,8 @@ public class Auditorium
 
 
 
-	/*	Function 5:			displayReport()
-		Descr:				This function is called by displayMainMenu().
+	/*	Method 5:			displayReport()
+		Descr:				This method is called by displayMainMenu().
 							It prints the final report to the screen.
 		Param:    			None.
 		Return:				None. */
@@ -248,8 +248,8 @@ public class Auditorium
 
 
 
-	/*	Function 6:			promptReservationMenu()
-		Descr:				This function is called by displayMainMenu().
+	/*	Method 6:			promptReservationMenu()
+		Descr:				This method is called by displayMainMenu().
 							It shows available seats, asks for desired seats, makes reservation, etc.
 		Param:    			Scanner scanner
 							Scanner object to get user input.
@@ -312,8 +312,8 @@ public class Auditorium
 
 
 
-	/*	Function 7:			processOrder()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 7:			processOrder()
+		Descr:				This method is called by promptReservationMenu().
 							It fills seats and updates counters.
 		Param:    			int rowIndex, int startingSeatIdNumber, int numAdultTicketsRequested, int numChildTicketsRequested, int numSeniorTicketsRequested
 							User-inputted row number, starting seat letter, and number of each type of ticket requested.
@@ -351,8 +351,8 @@ public class Auditorium
 
 
 
-	/*	Function 8:			altSeatIdNumber()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 8:			altSeatIdNumber()
+		Descr:				This method is called by promptReservationMenu().
 							It determines the ID of the first seat in an alternate range of seats.
 		Param:    			Scanner scanner, int rowIndex, int numTotalTicketsRequested
 							Scanner object to get user input, user's originally-requested desired row & number of tickets.
@@ -422,8 +422,8 @@ public class Auditorium
 
 		
 
-	/*	Function 9:			acceptedAlternateSeatOffer()
-		Descr:				This function is called by altSeatIdNumber().
+	/*	Method 9:			acceptedAlternateSeatOffer()
+		Descr:				This method is called by altSeatIdNumber().
 							It prompts the user to accept or decline the next-best seats.
 		Param:    			Scanner scanner, int seatIdNumber
 							Scanner object to get user input, ID number of the alternate starting seat.
@@ -457,8 +457,8 @@ public class Auditorium
 
 
 
-	/*	Function 10:		leftSeatIdNumber()
-		Descr:				This function is called by altSeatIdNumber().
+	/*	Method 10:			leftSeatIdNumber()
+		Descr:				This method is called by altSeatIdNumber().
 							It determines if a range of alternate seats is available to the left of the row center.
 		Param:    			int rowIndex, int numTicketsRequested
 							User's originally-requested desired row & number of tickets.
@@ -487,8 +487,8 @@ public class Auditorium
 
 
 
-	/*	Function 11:		rightSeatIdNumber()
-		Descr:				This function is called by altSeatIdNumber().
+	/*	Method 11:			rightSeatIdNumber()
+		Descr:				This method is called by altSeatIdNumber().
 							It determines if a range of alternate seats is available to the right of the row center.
 		Param:    			int rowIndex, int numTicketsRequested
 							User's originally-requested desired row & number of tickets.
@@ -518,8 +518,8 @@ public class Auditorium
 
 	
 
-	/*	Function 12:		seatsAreOpen()
-		Descr:				This function is called by promptReservationMenu(), leftSeatIdNumber(), rightSeatIdNumber().
+	/*	Method 12:			seatsAreOpen()
+		Descr:				This method is called by promptReservationMenu(), leftSeatIdNumber(), rightSeatIdNumber().
 							It determines if all seats in a range of seats are open.
 							startingSeatIdNumber will be within valid range when this method is called.
 		Param:    			int rowIndex, int startingSeatIdNumber, int numTickets
@@ -548,8 +548,8 @@ public class Auditorium
 
 
 
-	/*	Function 13:		seatSelectionExtendsPastEndOfRow()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 13:			seatSelectionExtendsPastEndOfRow()
+		Descr:				This method is called by promptReservationMenu().
 							It determines if a range of seats is greater than the max seats in a row.
 							startingSeatIdNumber will be within valid range when this method is called.
 		Param:    			int startingSeatIdNumber, int numTicketsRequested
@@ -574,8 +574,8 @@ public class Auditorium
 
 
 
-	/*	Function 14:		promptNumberOfTicketsMenu()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 14:			promptNumberOfTicketsMenu()
+		Descr:				This method is called by promptReservationMenu().
 							It prompts for the user's desired amounts of adult, child, and senior tickets.
 							Type = 1 for Adult, 2 for Child, 3 for Senior.
 		Param:    			Scanner scanner, int type
@@ -612,8 +612,8 @@ public class Auditorium
 
 
 
-	/*	Function 15:		promptSeatLetterMenu()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 15:			promptSeatLetterMenu()
+		Descr:				This method is called by promptReservationMenu().
 							It prompts for the user's desired starting seat.
 		Param:    			Scanner scanner
 							Scanner object to get user input.
@@ -642,8 +642,8 @@ public class Auditorium
 
 
 
-	/*	Function 16:		promptRowNumberMenu()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 16:			promptRowNumberMenu()
+		Descr:				This method is called by promptReservationMenu().
 							It prompts for the user's desired row number.
 		Param:    			Scanner scanner
 							Scanner object to get user input.
@@ -665,8 +665,8 @@ public class Auditorium
 
 
 
-	/*	Function 17:		displaySeatsOnScreen()
-		Descr:				This function is called by promptReservationMenu().
+	/*	Method 17:			displaySeatsOnScreen()
+		Descr:				This method is called by promptReservationMenu().
 							It makes changes to the array read in from the input file to make it suitable for the user to view on-screen.
 		Param:    			Scanner scanner
 							Scanner object to get user input.
@@ -704,11 +704,11 @@ public class Auditorium
 
 
 
-	/*	Function 18:		writeToFile()
-		Descr:				This function is called by displayMainMenu().
+	/*	Method 18:			writeToFile()
+		Descr:				This method is called by displayMainMenu().
 							It is used to write the final state of the array back to file.
 							It throws java.io.IOException because it attempts output file handling 
-							and does not use try/catch to handle exceptions from output file handling here in this function.
+							and does not use try/catch to handle exceptions from output file handling here in this method.
 		Param:    			None.
 		Return:				None. */
 	private void writeToFile() throws java.io.IOException

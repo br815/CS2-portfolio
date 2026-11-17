@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	Customer.java:			This source file defines the Customer class, which includes 24 function definitions. */
+	Customer.java:			This source file defines the Customer class, which includes 24 method definitions. */
 
 package DrinkRewards;
 
@@ -16,13 +16,11 @@ import java.util.StringTokenizer;
 // Beginning of class definition of Customer
 public class Customer
 {
-
 	// class-specific member variables
 	private String firstName;
 	private String lastName;
 	private String guestID;
 	private float amountSpent;
-
 	private boolean initialized;	// distinguishes between objects created by each of the overloaded constructors
 
 	// package-wide member variables
@@ -32,8 +30,8 @@ public class Customer
 	/// private float thresholdForPromotion;
 
 
-	
-	/*	Function Type:		constructor
+
+	/*	Method 1:			Constructor.
 		Descr:				This constructor initializes class members.
 		Param:    			None.
 		Return:				None, initializes a Customer object. */
@@ -54,8 +52,8 @@ public class Customer
 
 
 
-	/*	Function Type:		constructor (overloaded)
-		Descr:				This overloading of the constructor sets class members to the parameters supplied.
+	/*	Method 2:			Constructor (overloaded).
+		Descr:				This overloaded constructor sets class members to the parameters supplied.
 		Param:    			String guest_ID, String first_name, String last_name, float amount_spent
 							Values for the members of a Customer object.
 		Return:				None, initializes a Customer object. */
@@ -78,8 +76,8 @@ public class Customer
 
 
 
-	/*	Function 3:			toString()
-		Descr:				This function concatenates the customer information given by 4 private members into a string.
+	/*	Method 3:			toString()
+		Descr:				This method concatenates the customer information given by 4 private members into a string.
 		Param:    			None.
 		Return:				An unnamed concatenated string. */
 	public String toString()
@@ -92,8 +90,8 @@ public class Customer
 
 
 
-	/*	Function 4:			toDebugString()
-		Descr:				This function concatenates further customer information into a string for debugging.
+	/*	Method 4:			toDebugString()
+		Descr:				This method concatenates further customer information into a string for debugging.
 		Param:    			None.
 		Return:				An unnamed concatenated string. */
 	public String toDebugString()
@@ -108,8 +106,8 @@ public class Customer
 
 
 
-	/*	Function 5:			toOutputString()
-		Descr:				This function concatenates the customer information given by 4 private members into a string, 
+	/*	Method 5:			toOutputString()
+		Descr:				This method concatenates the customer information given by 4 private members into a string, 
 							first converting the float for amountSpent for output.
 		Param:    			None.
 		Return:				An unnamed concatenated string. */
@@ -123,17 +121,16 @@ public class Customer
 
 
 
-	/*	Function 6:			toMoneyString()
-		Descr:				This function is called by toOutputString().
+	/*	Method 6:			toMoneyString()
+		Descr:				This method is called by toOutputString().
 							It returns strings like 40.00, 25.01, 55.37, etc.
-							It is a static function, so it can be called without creating an object of this class.
+							This is a static method, so it can be called without creating an object of this class.
 		Param:    			float amount
 							A float representing a money amount.
 		Return:				String str_amount
 							The string conversion of the money amount. */
 	public static String toMoneyString(float amount)
 	{
-
 		int int_amount = (int) (Math.round(amount * 100.0));
 		int dollars = int_amount / 100;
 		int cents = int_amount - dollars*100;
@@ -153,8 +150,8 @@ public class Customer
 
 
 
-	/*	Functions 7-13:		getFirstName(), getLastName(), getGuestID(), getAmountSpent(), isPromoted(), isInitialized(), isProcessedLastOrder()
-		Descr:				These 7 functions are accessors.
+	/*	Methods 7-13:		getFirstName(), getLastName(), getGuestID(), getAmountSpent(), isPromoted(), isInitialized(), isProcessedLastOrder()
+		Descr:				These 7 methods are accessors.
 		Param:    			None for all.
 		Return:				The corresponding members accessed by each accessor. */
 	public String getFirstName()
@@ -188,8 +185,8 @@ public class Customer
 
 
 
-	/*	Functions 14-19:	setFirstName(), setLastName(), setGuestID(), setAmountSpent(), setPromoted(), setInitialized()
-		Descr:				These 6 functions are mutators.
+	/*	Methods 14-19:		setFirstName(), setLastName(), setGuestID(), setAmountSpent(), setPromoted(), setInitialized()
+		Descr:				These 6 methods are mutators.
 		Param:    			The corresponding members mutated by each mutator (except for setPromoted, which has no param).
 		Return:				None for all. */
 	public void setFirstName(String first_name)
@@ -250,8 +247,8 @@ public class Customer
 
 
 
-	/*	Functions 20-21:	getsDiscountOrReward(), getSaleFactor()
-		Descr:				These 2 functions are accessors that return set values.
+	/*	Methods 20-21:		getsDiscountOrReward(), getSaleFactor()
+		Descr:				These 2 methods are accessors that return set values.
 		Param:    			None for all.
 		Return:				The set values returned by each accessor. */
 	public boolean getsDiscountOrReward()
@@ -265,8 +262,8 @@ public class Customer
 
 
 
-	/*	Function 22:		isValidLastRequestedOrderAmount()
-		Descr:				This function is an accessor like functions 7-13.
+	/*	Method 22:			isValidLastRequestedOrderAmount()
+		Descr:				This method is an accessor like methods 7-13.
 		Param:    			None.
 		Return:				boolean lastRequestedOrderAmountWasValid
 							The corresponding member accessed by this accessor. */
@@ -277,13 +274,13 @@ public class Customer
 
 
 
-	/*	Function 23:		isValidLastRequestedOrderAmount() (overloaded)
-		Descr:				This overloaded function first mutates its corresponding member according to a condition, 
+	/*	Method 23:			isValidLastRequestedOrderAmount() (overloaded)
+		Descr:				This overloaded method first mutates its corresponding member according to a condition, 
 							then returns it.
 		Param:    			float order_total_price
 							Amount ordered by the customer.
 		Return:				boolean lastRequestedOrderAmountWasValid
-							The corresponding member accessed by this function. */
+							The corresponding member accessed by this method. */
 	protected boolean isValidLastRequestedOrderAmount(float order_total_price)
 	{
 		int int_order_total_price = (int) (Math.round(order_total_price*1000.0f)); 
@@ -302,8 +299,8 @@ public class Customer
 
 
 
-	/*	Function 24:		processOrder()
-		Descr:				This function processes a customer's order in accordance with their customer status.
+	/*	Method 24:			processOrder()
+		Descr:				This method processes a customer's order in accordance with their customer status.
 							`example  :   c2 = cc.processOrder(10.00f);`
 							`if(cc.isProcessedLastOrder() == true && cc.isPromoted() == false) : order processed successfully`
 							`if(cc.isProcessedLastOrder() == false && [cc.isPromoted() == true] && c2.isInitialized() == true) : order processed by c2 - after this c2 should be used, not cc. Condition checked within [] is redundant`

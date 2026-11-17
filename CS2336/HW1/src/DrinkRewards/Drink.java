@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	Drink.java:				This source file defines the Drink class, which includes 14 function definitions. */
+	Drink.java:				This source file defines the Drink class, which includes 14 method definitions. */
 
 package DrinkRewards;
 
@@ -26,7 +26,7 @@ public class Drink
 
 
 
-	/*	Function Type:		constructor
+	/*	Method 1:			Constructor.
 		Descr:				This constructor initializes class members.
 		Param:    			String type_name, char size_letter, float price_per_square_inch
 							Values for the members of a Drink object.
@@ -81,9 +81,9 @@ public class Drink
 
 
 
-	/*	Functions 2-12:		getType(), getPricePerOunce(), getPriceOfDrink(), getPricePerSquareInch(), getPriceOfPersonalization(), 
+	/*	Methods 2-12:		getType(), getPricePerOunce(), getPriceOfDrink(), getPricePerSquareInch(), getPriceOfPersonalization(), 
 							getTotalPrice(), getSizeLetter(), getDiameter(), getHeight(), getArea(), getSizeVolume()
-		Descr:				These 11 functions are accessors.
+		Descr:				These 11 methods are accessors.
 		Param:    			None for all.
 		Return:				The corresponding members accessed by each accessor. */
 	public String getType()
@@ -133,8 +133,8 @@ public class Drink
 
 
 
-	/*	Function 13:		getBriefString()
-		Descr:				This function concatenates drink information into a brief string.
+	/*	Method 13:			getBriefString()
+		Descr:				This method concatenates drink information into a brief string.
 		Param:    			None.
 		Return:				An unnamed concatenated string. */
 	public String getBriefString()
@@ -146,8 +146,8 @@ public class Drink
 
 
 
-	/*	Function 14:		toString()
-		Descr:				This function concatenates drink information into a string.
+	/*	Method 14:			toString()
+		Descr:				This method concatenates drink information into a string.
 		Param:    			None.
 		Return:				An unnamed concatenated string. */
 	public String toString()

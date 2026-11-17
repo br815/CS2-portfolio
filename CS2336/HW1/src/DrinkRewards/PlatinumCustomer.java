@@ -1,7 +1,7 @@
 /*	Author:					Bushra Rahman
 	Course:					CS 2336 (Spring 2020)
    	Date:					2/8/2020
-	PlatinumCustomer.java:	This source file defines the PlatinumCustomer subclass of Customer, which includes 11 function definitions. */
+	PlatinumCustomer.java:	This source file defines the PlatinumCustomer subclass of Customer, which includes 11 method definitions. */
 
 package DrinkRewards;
 
@@ -10,7 +10,7 @@ package DrinkRewards;
 // Beginning of subclass definition of PlatinumCustomer
 public class PlatinumCustomer extends Customer
 {
-	// package-wide member constants
+	// package-wide member constants (static - associated with the class rather than any instantiated object)
 	public static final float PLATINUM_MIN_AMOUNT_SPENT = 200.0f;
 	public static final float PLATINUM_MIN_AMOUNT_SPENT_INT = 200_000;
 
@@ -20,9 +20,9 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function Type:		constructor
-		Descr:				This constructor uses super() to invoke the constructor
-							of this subclass's superclass, Customer().
+	/*	Method 1:			Constructor.
+		Descr:				This constructor uses super() to invoke
+							the constructor of this subclass's superclass, Customer().
 		Param:    			None.
 		Return:				None, initializes a PlatinumCustomer object. */
 	private PlatinumCustomer()
@@ -32,9 +32,9 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function Type:		constructor (overloaded)
-		Descr:				This overloading of the constructor uses super() to invoke the overloaded constructor
-							of this subclass's superclass, Customer().
+	/*	Method 2:			Constructor (overloaded).
+		Descr:				This overloaded constructor uses super() to invoke
+							the overloaded constructor of this subclass's superclass, Customer().
 		Param:    			String guest_ID, String first_name, String last_name, float amount_spent, float bonus_bucks
 							Values for the members of a Customer object.
 							All these params but 1 are supplied to the superclass's overloaded constructor,
@@ -52,9 +52,9 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function Type:		constructor (overloaded)
-		Descr:				This overloading of the constructor uses super() to invoke the overloaded constructor
-							of this subclass's superclass, Customer().
+	/*	Method 3:			Constructor (overloaded).
+		Descr:				This overloaded constructor uses super() to invoke
+							the overloaded constructor of this subclass's superclass, Customer().
 		Param:    			GoldCustomer fromGoldCustomer, float amount_spent
 							A GoldCustomer object and its amount spent.
 							They are supplied to this constructor so that the GoldCustomer's members can be accessed (using its accessors)
@@ -71,8 +71,8 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function 4:			toDebugString()
-		Descr:				This function concatenates customer information
+	/*	Method 4:			toDebugString()
+		Descr:				This method concatenates customer information
 							given by its corresponding superclass method, along with bonusBucks,
 							into a string for debugging.
 		Param:    			None.
@@ -85,8 +85,8 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function 5:			toOutputString()
-		Descr:				This function concatenates customer information
+	/*	Method 5:			toOutputString()
+		Descr:				This method concatenates customer information
 							given by its corresponding superclass method, along with strBonus,
 							first converting the float for bonusBucks to strBonus for output.
 		Param:    			None.
@@ -100,8 +100,8 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Functions 6-8:		getBonusBucks(), getsDiscountOrReward(), getSaleFactor()
-		Descr:				These 3 functions are accessors.
+	/*	Methods 6-8:		getBonusBucks(), getsDiscountOrReward(), getSaleFactor()
+		Descr:				These 3 methods are accessors.
 		Param:    			None for all.
 		Return:				The corresponding members accessed by each accessor. */
 	public float getBonusBucks()
@@ -110,17 +110,17 @@ public class PlatinumCustomer extends Customer
 	}
 	public boolean getsDiscountOrReward()
 	{
-		return true;	// this accessor returns a static value
+		return true;	// this accessor returns a set value
 	}
 	public float getSaleFactor()
 	{
-		return 1.0F;	// this accessor returns a static value
+		return 1.0F;	// this accessor returns a set value
 	}
 
 
 
-	/*	Function 9:			setBonusBucks()
-		Descr:				This function is a mutator.
+	/*	Method 9:			setBonusBucks()
+		Descr:				This method is a mutator.
 		Param:    			The corresponding member mutated by this mutator.
 		Return:				None. */
 	private void setBonusBucks()
@@ -138,15 +138,15 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function 10:		promote()
-		Descr:				This function promotes a GoldCustomer object to PlatinumCustomer.
+	/*	Method 10:			promote()
+		Descr:				This method promotes a GoldCustomer object to PlatinumCustomer.
+							This is a static method, so it can be called without creating an object of this class.
 		Param:    			GoldCustomer fromGoldCustomer, float order_total_price
 							A GoldCustomer object representing the customer, and amount ordered by the customer.
 		Return:				PlatinumCustomer pc
 							An object of the PlatinumCustomer subclass. */
 	protected static PlatinumCustomer promote (GoldCustomer fromGoldCustomer, float order_total_price)
 	{
-
 		PlatinumCustomer pc = new PlatinumCustomer();
 		float tentativeAmountSpent = fromGoldCustomer.getAmountSpent() + order_total_price*fromGoldCustomer.getSaleFactor();
 		int int_tentativeAmountSpent = (int) (Math.round(tentativeAmountSpent*1000.0f)); 
@@ -165,8 +165,8 @@ public class PlatinumCustomer extends Customer
 
 
 
-	/*	Function 11:		processOrder()
-		Descr:				This function processes a customer's order in accordance with their customer status.
+	/*	Method 11:			processOrder()
+		Descr:				This method processes a customer's order in accordance with their customer status.
 							`returned object is always an "uninitialized" PlatinumCustomer object`
 							`as there is no possibility of promoting a PlatinumCustomer object.`
 							`example  :   c2 = pc.processOrder(10.00f);`
@@ -211,7 +211,6 @@ public class PlatinumCustomer extends Customer
 			pc.processedLastOrder = false;
 			return new PlatinumCustomer();
 		}
-		
 	}
 
 }	// end of class PlatinumCustomer
