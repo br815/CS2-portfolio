@@ -839,4 +839,4 @@ public class OrderManager
 		return true;
 	}
 
-} // end of class OrderManager
+}	// end of class OrderManager

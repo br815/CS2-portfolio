@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class Main
 {
-	public static void main(String[] args) //throws java.io.IOException			// main() does not need to throw IOException as long as Auditorium() & displayMainMenu() are called in a try/catch block
-	{
+	public static void main(String[] args) //throws java.io.IOException			// main() does not need to throw IOException as long as 
+	{																			// Auditorium() & displayMainMenu() are called in a try/catch block.
 		/*	IOException handling: 
 			read_seating_arrangement_file() throws to the class constructor Auditorium(), 
 			and writeToFile() throws to the driver method displayMainMenu(). 
@@ -28,4 +28,5 @@ public class Main
 			/// fileException.printStackTrace();								// un-comment for debugging info for back-end developer use
 		}
 	}
+
 }	// end of class Main
