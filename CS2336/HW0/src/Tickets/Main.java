@@ -12,10 +12,10 @@ public class Main
 	public static void main(String[] args) //throws java.io.IOException			// main() does not need to throw an I/O exception as long as 
 	{																			// Auditorium() & displayMainMenu() are called in a try/catch block.
 		/*	I/O exception handling: 
-			read_seating_arrangement_file() throws to the class constructor Auditorium(), 
-			and writeToFile() throws to the driver method displayMainMenu(). 
-			Both the constructor & driver method also throw to where they are called, ie. main(). 
-			So in main(), a try/catch block is used to handle any I/O exception. 
+			readSeatingArrangementFile() throws to the class constructor Auditorium(), 
+			and writeToFile() throws to the driver method displayMainMenu().
+			Both the constructor & driver method also throw to where they are called, ie. here in main().
+			So in main(), a try/catch block is used to handle any I/O exception.
 			Without these blocks, uncaught exceptions propagate to the JVM, which defaults to printing the call stack and terminating the program. */
 		try
 		{

@@ -36,7 +36,7 @@ public class Auditorium
 	
 	/*	Method 1:			Constructor.
 		Descr:				This method initializes row & column member variables & the array of seats.
-							It throws an I/O exception because it calls read_seating_arrangement_file() 
+							It throws an I/O exception because it calls readSeatingArrangementFile() 
 							and does not use try/catch to handle exceptions from that method here in the constructor.
 		Param:    			None.
 		Return:				None, initializes an Auditorium object. */
@@ -57,19 +57,19 @@ public class Auditorium
 		}
 
 		// read from input file, store data in array, initialize variables
-		read_seating_arrangement_file();
+		readSeatingArrangementFile();
 	}
 
 
 
-	/*	Method 2:			read_seating_arrangement_file()
+	/*	Method 2:			readSeatingArrangementFile()
 		Descr:				This method is called by the constructor.
 							It reads the input file & calculates variables at the end of the read.
 							It throws an I/O exception because it attempts input file handling 
 							and does not use try/catch to handle exceptions from that operation here in this method.
 		Param:    			None.
 		Return:				None. */
-	private void read_seating_arrangement_file() throws java.io.IOException
+	private void readSeatingArrangementFile() throws java.io.IOException
 	{
 		// create input file object
 		File file = new File(seating_arrangement_file);

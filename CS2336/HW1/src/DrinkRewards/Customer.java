@@ -275,8 +275,8 @@ public class Customer
 
 
 	/*	Method 23:			isValidLastRequestedOrderAmount() (overloaded)
-		Descr:				This overloaded method first mutates its corresponding member according to a condition, 
-							then returns it.
+		Descr:				This overloaded method is called by processOrder().
+							It first mutates its corresponding member according to a condition, then returns it.
 		Param:    			float order_total_price
 							Amount ordered by the customer.
 		Return:				boolean lastRequestedOrderAmountWasValid
