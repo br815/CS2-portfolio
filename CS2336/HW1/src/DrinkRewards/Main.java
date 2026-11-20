@@ -7,8 +7,6 @@ package DrinkRewards;
 
 import java.io.IOException;
 
-import Tickets.Auditorium;
-
 public class Main
 {
 	public static void main(String[] args) //throws java.io.IOException			// main() does not need to throw an I/O exception as long as 
