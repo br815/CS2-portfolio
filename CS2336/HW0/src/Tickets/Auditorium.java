@@ -36,8 +36,8 @@ public class Auditorium
 	
 	/*	Method 1:			Constructor.
 		Descr:				This method initializes row & column member variables & the array of seats.
-							It throws java.io.IOException because it calls read_seating_arrangement_file() 
-							and does not use try/catch to handle exceptions from read_seating_arrangement_file() here in the constructor.
+							It throws an I/O exception because it calls read_seating_arrangement_file() 
+							and does not use try/catch to handle exceptions from that method here in the constructor.
 		Param:    			None.
 		Return:				None, initializes an Auditorium object. */
 	public Auditorium() throws java.io.IOException
@@ -65,8 +65,8 @@ public class Auditorium
 	/*	Method 2:			read_seating_arrangement_file()
 		Descr:				This method is called by the constructor.
 							It reads the input file & calculates variables at the end of the read.
-							It throws java.io.IOException because it attempts input file handling 
-							and does not use try/catch to handle exceptions from input file handling here in this method.
+							It throws an I/O exception because it attempts input file handling 
+							and does not use try/catch to handle exceptions from that operation here in this method.
 		Param:    			None.
 		Return:				None. */
 	private void read_seating_arrangement_file() throws java.io.IOException
@@ -167,8 +167,8 @@ public class Auditorium
 	
 	/*	Method 3:			displayMainMenu()
 		Descr:				This method is the main menu & driver method of this class.
-							It throws java.io.IOException because it calls writeToFile() 
-							and does not use try/catch to handle exceptions from writeToFile() here in the driver method.
+							It throws an I/O exception because it calls writeToFile() 
+							and does not use try/catch to handle exceptions from that method here in the driver method.
 		Param:    			None.
 		Return:				None. */
 	public void displayMainMenu() throws java.io.IOException
@@ -707,8 +707,8 @@ public class Auditorium
 	/*	Method 18:			writeToFile()
 		Descr:				This method is called by displayMainMenu().
 							It is used to write the final state of the array back to file.
-							It throws java.io.IOException because it attempts output file handling 
-							and does not use try/catch to handle exceptions from output file handling here in this method.
+							It throws an I/O exception because it attempts output file handling 
+							and does not use try/catch to handle exceptions from that operation here in this method.
 		Param:    			None.
 		Return:				None. */
 	private void writeToFile() throws java.io.IOException

@@ -38,7 +38,6 @@ public class OrderManager
 		Return:				None, initializes an OrderManager object. */
 	public OrderManager()
 	{
-		// initialize members
 		numOrdinaryCustomers = 0;
 		numPreferredCustomers = 0;
 		numOrders = 0;
@@ -47,15 +46,16 @@ public class OrderManager
 
 
 	/*	Method 2:			manage()
-		Descr:				This method ...
-							It throws java.io.IOException because it ...
+		Descr:				This method is the driver method of this class.
+							It throws an I/O exception because it calls readPreferredCustomers(), readCustomers(), readOrders(), & writeOutputToFiles() 
+							and does not use try/catch to handle exceptions from those methods here in the driver method.
 		Param:    			None.
 		Return:				None. */
 	public void manage() throws java.io.IOException
 	{
 		final boolean DEBUG = false;
 		
-		read_preferred_customers();
+		readPreferredCustomers();
 		if(DEBUG)
 		{
 			System.out.println("numPreferredCustomers = " + numPreferredCustomers);
@@ -67,7 +67,7 @@ public class OrderManager
 		}
 		
 
-		read_customers();
+		readCustomers();
 		if(numOrdinaryCustomers == 0)
 		{
 			System.exit(1); // no customers read from file - spec not clear on this
@@ -84,7 +84,7 @@ public class OrderManager
 		}
 
 		
-		read_orders();
+		readOrders();
 		if(numOrders == 0)
 		{
 			if(DEBUG) System.out.println("ERROR: No order found in file " + ORDER_FILE_NAME); 
@@ -122,106 +122,13 @@ public class OrderManager
 
 
 
-	/*	Method 3:			read_customers()
-		Descr:				This method ...
-							It throws java.io.IOException because it ...
+	/*	Method 3:			readPreferredCustomers()
+		Descr:				This method is called by manage().
+							It throws an I/O exception because it attempts input file handling 
+							and does not use try/catch to handle exceptions from that operation here in this method.
 		Param:    			None.
 		Return:				None. */
- 	private void read_customers() throws java.io.IOException
-	{
-		final boolean DEBUG = false;;
-
-		File file = new File(CUSTOMER_FILE_NAME);
-		if(!file.exists())
-		{
-			System.out.println("ERROR: File " + CUSTOMER_FILE_NAME + " does not exist");
-			System.exit(1);
-		}
-		
-		Scanner scanner = new Scanner(file);
-		
-		int customerIndex = -1;
-		// local variable lineNum considered unused by IDE bc boolean DEBUG is declared as "final" - and all use of lineNum is in DEBUG stmts
-		int lineNum = 0;		// (NOT index): line being read from the file
-		String strLine = "";	// a line read from the input file 
-
-		// a token is a maximal sequence of consecutive characters that are not delimiters
-		String[] tokens = {"", "", "", ""}; // each string in strLine
-		StringTokenizer stringTokenizer;
-		int tokenCount = 0;
-		float amount_spent = 0.0F;
-		Customer customer;
-
-		while(scanner.hasNextLine())
-		{
-			strLine = scanner.nextLine().trim();
-			lineNum++;
-			if(strLine.length() == 0)
-			{
-				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has no data items.");
-				continue;
-			}
-			stringTokenizer = new StringTokenizer(strLine, " \t\n\r");
-			tokenCount = 0;
-			tokens[0] = "";
-			tokens[1] = "";
-			tokens[2] = "";
-			tokens[3] = "";
-			amount_spent = 0.0F;
-			
-			while(stringTokenizer.hasMoreTokens())
-			{
-				tokenCount++;
-				if(tokenCount > 4)
-				{
-					break;
-				}
-				tokens[tokenCount - 1] = stringTokenizer.nextToken();
-			}
-
-			if(tokenCount < 4)
-			{
-				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too few data items.");
-			}
-			else if(tokenCount > 4)
-			{
-				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too many data items.");
-			}
-			else
-			{
-				customerIndex++;
-				amount_spent = Float.parseFloat(tokens[3]);
-				customer = new Customer(tokens[0], tokens[1], tokens[2], amount_spent);
-
-				if(customerIndex == 0)
-				{
-					customers = new Customer[0];
-				}
-				customers = addToArray(customers, customer);
-				
-				if(DEBUG) System.out.println("Line # " + lineNum 
-										+ " Customer index: " + customerIndex 
-										+ "   " + customers[customerIndex]);
-			}
-		}
-		
-		numOrdinaryCustomers = customerIndex + 1;
-		scanner.close();
-
-		if(DEBUG)
-		{
-			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers + ". Closing file.");
-		}
-	}
-
-
-
-	/*	Method 4:			read_preferred_customers()
-		Descr:				This method ...
-							It throws java.io.IOException because it ...
-		Param:    			None.
-		Return:				None. */
-	private void read_preferred_customers() throws java.io.IOException
+	private void readPreferredCustomers() throws java.io.IOException
 	{
 		final boolean DEBUG = false;
 
@@ -324,12 +231,108 @@ public class OrderManager
 
 
 
-	/*	Method 5:			read_orders()
-		Descr:				This method ...
-							It throws java.io.IOException because it ...
+	/*	Method 4:			readCustomers()
+		Descr:				This method is called by manage().
+							It throws an I/O exception because it attempts input file handling 
+							and does not use try/catch to handle exceptions from that operation here in this method.
 		Param:    			None.
 		Return:				None. */
-	private void read_orders()  throws java.io.IOException
+ 	private void readCustomers() throws java.io.IOException
+	{
+		final boolean DEBUG = false;;
+
+		File file = new File(CUSTOMER_FILE_NAME);
+		if(!file.exists())
+		{
+			System.out.println("ERROR: File " + CUSTOMER_FILE_NAME + " does not exist");
+			System.exit(1);
+		}
+		
+		Scanner scanner = new Scanner(file);
+		
+		int customerIndex = -1;
+		// local variable lineNum considered unused by IDE bc boolean DEBUG is declared as "final" - and all use of lineNum is in DEBUG stmts
+		int lineNum = 0;		// (NOT index): line being read from the file
+		String strLine = "";	// a line read from the input file 
+
+		// a token is a maximal sequence of consecutive characters that are not delimiters
+		String[] tokens = {"", "", "", ""}; // each string in strLine
+		StringTokenizer stringTokenizer;
+		int tokenCount = 0;
+		float amount_spent = 0.0F;
+		Customer customer;
+
+		while(scanner.hasNextLine())
+		{
+			strLine = scanner.nextLine().trim();
+			lineNum++;
+			if(strLine.length() == 0)
+			{
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has no data items.");
+				continue;
+			}
+			stringTokenizer = new StringTokenizer(strLine, " \t\n\r");
+			tokenCount = 0;
+			tokens[0] = "";
+			tokens[1] = "";
+			tokens[2] = "";
+			tokens[3] = "";
+			amount_spent = 0.0F;
+			
+			while(stringTokenizer.hasMoreTokens())
+			{
+				tokenCount++;
+				if(tokenCount > 4)
+				{
+					break;
+				}
+				tokens[tokenCount - 1] = stringTokenizer.nextToken();
+			}
+
+			if(tokenCount < 4)
+			{
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too few data items.");
+			}
+			else if(tokenCount > 4)
+			{
+				if(DEBUG) System.out.println("Warning: Line #" + lineNum + " has too many data items.");
+			}
+			else
+			{
+				customerIndex++;
+				amount_spent = Float.parseFloat(tokens[3]);
+				customer = new Customer(tokens[0], tokens[1], tokens[2], amount_spent);
+
+				if(customerIndex == 0)
+				{
+					customers = new Customer[0];
+				}
+				customers = addToArray(customers, customer);
+				
+				if(DEBUG) System.out.println("Line # " + lineNum 
+										+ " Customer index: " + customerIndex 
+										+ "   " + customers[customerIndex]);
+			}
+		}
+		
+		numOrdinaryCustomers = customerIndex + 1;
+		scanner.close();
+
+		if(DEBUG)
+		{
+			System.out.println("numOrdinaryCustomers = " + numOrdinaryCustomers + ". Closing file.");
+		}
+	}
+
+
+
+	/*	Method 5:			readOrders()
+		Descr:				This method is called by manage().
+							It throws an I/O exception because it attempts input file handling 
+							and does not use try/catch to handle exceptions from that operation here in this method.
+		Param:    			None.
+		Return:				None. */
+	private void readOrders() throws java.io.IOException
 	{
 		boolean DEBUG = false;
 		File file = new File(ORDER_FILE_NAME);
@@ -456,33 +459,43 @@ public class OrderManager
 
 
 
-	/*	Method 6:			customerIndex()
-		Descr:				This method gets the index of the array element that matches the supplied customer ID.
-		Param:    			String customerID, int numCustomers, Customer[] customers
-							Supplied customer ID, total size of array of Customers, array of Customers.
-		Return:				int i or -1
-							The matching array index of customerID, or -1 as a sentinel value. */
-	public int customerIndex(String customerID, int numCustomers, Customer[] customers)
+	/*	Method 6:			writeOutputToFiles()
+		Descr:				This method is called by manage().
+							It throws an I/O exception because it attempts output file handling 
+							and does not use try/catch to handle exceptions from that operation here in this method.
+		Param:    			Customer[] outputCustomers, String strOutputFileName
+							Array of Customers to be written to file, name of file to be written to.
+		Return:				None. */
+ 	private void writeOutputToFiles(Customer[] outputCustomers, String strOutputFileName) throws java.io.IOException
 	{
-		final boolean DEBUG = false; 
-
-		int i = 0;
-		for(i = 0; i < numCustomers; i++)
+		File file = new File(strOutputFileName);
+		if(file.exists())
 		{
-			if(customerID.equals(customers[i].getGuestID()))
-			{
-				if(DEBUG) System.out.println("***  i = " + i + "   customerID: " + customerID + "  customers[i].getGuestID(): " + customers[i].getGuestID());
-				return i;
-			}
+			// generally warn if it is okay to overwrite existing file 
 		}
-		// if here then match not found
-		return -1;
-	}
+		
+		PrintWriter pw = new PrintWriter(file);
+		int arrayLength = outputCustomers.length;
+		
+		if(arrayLength > 0)
+		{
+			for(int i = 0; i < arrayLength-1; i++)
+			{
+				pw.println(outputCustomers[i].toOutputString());	// calls Customer method toOutputString()
+			}
+
+			// no newline character at the very last line in the file
+			pw.print(outputCustomers[arrayLength - 1].toOutputString());
+		}
+		pw.close();
+ 	}
 
 
 
 	/*	Method 7:			processOrders()
-		Descr:				This method ...
+		Descr:				This method is called by manage().
+							It processes every order in the orders array, finds the customer associated with each order, 
+							updates that customer's account, & handles customer promotions when they become eligible.
 		Param:    			None.
 		Return:				None. */
 	private void processOrders()
@@ -593,8 +606,35 @@ public class OrderManager
 
 
 
-	/*	Method 8:			removeFromArray()
-		Descr:				This method removes the element at the position identified by index & shifts subsequent elements to the left.
+	/*	Method 8:			customerIndex()
+		Descr:				This method is called by processOrders() & readOrders().
+							It gets the index of the array element that matches the supplied customer ID.
+		Param:    			String customerID, int numCustomers, Customer[] customers
+							Supplied customer ID, total size of array of Customers, array of Customers.
+		Return:				int i OR -1
+							The matching array index of customerID, or -1 as a sentinel value. */
+	public int customerIndex(String customerID, int numCustomers, Customer[] customers)
+	{
+		final boolean DEBUG = false; 
+
+		int i = 0;
+		for(i = 0; i < numCustomers; i++)
+		{
+			if(customerID.equals(customers[i].getGuestID()))
+			{
+				if(DEBUG) System.out.println("***  i = " + i + "   customerID: " + customerID + "  customers[i].getGuestID(): " + customers[i].getGuestID());
+				return i;
+			}
+		}
+		// if here then match not found
+		return -1;
+	}
+
+
+
+	/*	Method 9:			removeFromArray()
+		Descr:				This method is called by processOrders().
+							It removes the element at the position identified by index & shifts subsequent elements to the left.
 		Param:    			Customer[] customers, int index
 							Array of Customers, index for element to be removed.
 		Return:				Customer[] customers
@@ -635,40 +675,9 @@ public class OrderManager
 
 
 
-	/*	Method 9:			writeOutputToFiles()
-		Descr:				This method ...
-							It throws java.io.IOException because it ...
-		Param:    			Customer[] outputCustomers, String strOutputFileName
-							Array of Customers to be written to file, name of file to be written to.
-		Return:				None. */
- 	private void writeOutputToFiles(Customer[] outputCustomers, String strOutputFileName) throws java.io.IOException
-	{
-		File file = new File(strOutputFileName);
-		if(file.exists())
-		{
-			// generally warn if it is okay to overwrite existing file 
-		}
-		
-		PrintWriter pw = new PrintWriter(file);
-		int arrayLength = outputCustomers.length;
-		
-		if(arrayLength > 0)
-		{
-			for(int i = 0; i < arrayLength-1; i++)
-			{
-				pw.println(outputCustomers[i].toOutputString());	// calls Customer method toOutputString()
-			}
-
-			// no newline character at the very last line in the file
-			pw.print(outputCustomers[arrayLength - 1].toOutputString());
-		}
-		pw.close();
- 	}
-
-
-
 	/*	Method 10:			addToArray()
-		Descr:				This method ...
+		Descr:				This method is called by readCustomers(), readPreferredCustomers(), & processOrders().
+							It inserts a Customer object into an array of Customer objects.
 		Param:    			Customer[] customers, Customer customer
 							Array of Customers, an individual Customer to be inserted.
 		Return:				Customer[] customers
@@ -717,7 +726,8 @@ public class OrderManager
 
 
 	/*	Method 11:			addToArray() (overloaded)
-		Descr:				This overloaded method ...
+		Descr:				This overloaded method is called by readOrders().
+							It inserts an Order object into an array of Order objects.
 		Param:    			Order[] orders, Order order
 							Array of Orders, an individual Order to be inserted.
 		Return:				Order[] orders
@@ -766,12 +776,13 @@ public class OrderManager
 
 
 	/*	Method 12:			isOkayPriceValue()
-		Descr:				This method is for use with prices, which may have a . or + sign as non-digit characters.
+		Descr:				This method is called by readOrders().
+							It is for use with prices, which may have a . or + sign as non-digit characters.
 							All other characters must be digits.
 							This is a static method, so it can be called without creating an object of this class.
 		Param:    			String str
 							A string which may be valid as a price value.
-		Return:				true or false
+		Return:				true OR false
 							Boolean value indicating validity of the string as a price value. */
 	public static boolean isOkayPriceValue(String str)
 	{
@@ -807,7 +818,8 @@ public class OrderManager
 
 
 	/*	Method 13:			isUnsignedPositiveInteger()
-		Descr:				This method is for use with strings which are plain numbers, with no other characters.
+		Descr:				This method is called by readOrders().
+							It is for use with strings which are plain numbers, with no other characters.
 							For example, "5" is valid but "5.", "5.0", "+5" are not.
 							This is a static method, so it can be called without creating an object of this class.
 		Param:    			String str
