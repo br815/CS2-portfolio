@@ -16,11 +16,11 @@ import java.util.StringTokenizer;
 public class OrderManager
 {
 	// class-specific member constants (static - associated with the class rather than any instantiated object)
-	private static final String CUSTOMER_FILE_NAME = "src/customer.dat";					// names of input files to be read in
-	private static final String PREFERRED_CUSTOMER_FILE_NAME = "src/preferred.dat";
-	private static final String ORDER_FILE_NAME = "src/orders.dat";
-	private static final String CUSTOMER_OUTPUT_FILE_NAME = "src/customer.dat";				// names of output files to be written to
-	private static final String PREFERRED_CUSTOMER_OUTPUT_FILE_NAME = "src/preferred.dat";
+	private static final String CUSTOMER_FILE_NAME = "data/customer.dat";					// names of input files to be read in
+	private static final String PREFERRED_CUSTOMER_FILE_NAME = "data/preferred.dat";
+	private static final String ORDER_FILE_NAME = "data/orders.dat";
+	private static final String CUSTOMER_OUTPUT_FILE_NAME = "data/customer.dat";				// names of output files to be written to
+	private static final String PREFERRED_CUSTOMER_OUTPUT_FILE_NAME = "data/preferred.dat";
 	
 	// class-specific member variables & arrays
 	private int numOrdinaryCustomers;

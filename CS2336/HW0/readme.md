@@ -25,6 +25,7 @@ java -cp build Tickets.Main
 * [Main.java](/CS2336/HW0/src/Tickets/Main.java): program driver containing `main()`
 * [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java): contains the definition of a class, including 18 functions
 
-## Input Files
+## `data/` Folder
+When executing from the project root, input & output file names must be provided through their relative path (ie. with the prepend `data/`). (This functionality is hard-coded into [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java).)
 * [A1.txt](/CS2336/HW0/A1.txt): input file choice 1 (for standard output)
 * [A2.txt](/CS2336/HW0/A2.txt): input file choice 2 (for program testing)

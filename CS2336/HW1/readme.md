@@ -25,7 +25,8 @@ java -cp build DrinkRewards.Main
 * [Main.java](/CS2336/HW1/src/DrinkRewards/Main.java): program driver containing `main()`
 * [xyz.java](/CS2336/HW1/src/DrinkRewards/xyz.java): contains the definition of a class, including xyz functions
 
-## Input Files
-* [preferred.dat](/CS2336/HW1/preferred.dat): (Note: these files haven't been put into project root yet)
+## `data/` Folder
+When executing from the project root, input & output file names must be provided through their relative path (ie. with the prepend `data/`). (This functionality is hard-coded into [OrderManager.java](/CS2336/HW1/src/DrinkRewards/OrderManager.java).)
+* [preferred.dat](/CS2336/HW1/preferred.dat): 
 * [customers.dat](/CS2336/HW1/customers.dat): 
 * [orders.dat](/CS2336/HW1/orders.dat): 

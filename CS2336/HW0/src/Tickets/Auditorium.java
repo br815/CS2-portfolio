@@ -14,12 +14,12 @@ import java.util.Scanner;
 public class Auditorium
 {
 	// member constants
-	private final String seating_arrangement_file = "A1.txt";	// input file name: the input files provided are A1.txt or A2.txt
-	private final int MAX_ROWS = 10;							// max # of rows
-	private final int MAX_SEATS_PER_ROW = 26;					// max # of columns
-	private final double TICKET_PRICE_ADULT = 10.00;			// adult ticket price
-	private final double TICKET_PRICE_CHILD = 5.00;				// child ticket price
-	private final double TICKET_PRICE_SENIOR = 7.50;			// senior ticket price
+	private final String seating_arrangement_file = "data/A1.txt";	// input file name: the input files provided are A1.txt or A2.txt
+	private final int MAX_ROWS = 10;								// max # of rows
+	private final int MAX_SEATS_PER_ROW = 26;						// max # of columns
+	private final double TICKET_PRICE_ADULT = 10.00;				// adult ticket price
+	private final double TICKET_PRICE_CHILD = 5.00;					// child ticket price
+	private final double TICKET_PRICE_SENIOR = 7.50;				// senior ticket price
 
 	// member variables
 	private int numRows;				// # of rows in input file
