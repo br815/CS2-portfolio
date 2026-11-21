@@ -32,6 +32,6 @@ java -cp build DrinkRewards.Main
 
 ## `data/` Folder
 When executing from the project root, input & output file names must be provided through their relative path (ie. with the prepend `data/`). (This functionality is hard-coded into [OrderManager.java](/CS2336/HW1/src/DrinkRewards/OrderManager.java).)
-* [preferred.dat](/CS2336/HW1/preferred.dat): 
-* [customers.dat](/CS2336/HW1/customers.dat): 
-* [orders.dat](/CS2336/HW1/orders.dat): 
+* [preferred.dat](/CS2336/HW1/data/preferred.dat): 
+* [customer.dat](/CS2336/HW1/data/customer.dat): 
+* [orders.dat](/CS2336/HW1/data/orders.dat): 
