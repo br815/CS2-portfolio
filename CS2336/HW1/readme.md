@@ -10,7 +10,7 @@ Open terminal in `CS2-portfolio` and run:
 ```
 cd CS2336/HW1
 mkdir build
-javac -d build src/DrinkRewards/Main.java xyz
+javac -d build src/DrinkRewards/Main.java src/DrinkRewards/Drink.java src/DrinkRewards/Order.java src/DrinkRewards/OrderManager.java src/DrinkRewards/Customer.java src/DrinkRewards/GoldCustomer.java src/DrinkRewards/PlatinumCustomer.java
 # Or use the *.java wildcard for a conciser compilation instruction:
 javac -d build src/DrinkRewards/*.java
 java -cp build DrinkRewards.Main
@@ -23,7 +23,12 @@ java -cp build DrinkRewards.Main
 ## `src/` Folder
 ### Source Files in the `DrinkRewards/` Package
 * [Main.java](/CS2336/HW1/src/DrinkRewards/Main.java): program driver containing `main()`
-* [xyz.java](/CS2336/HW1/src/DrinkRewards/xyz.java): contains the definition of a class, including xyz functions
+* [Drink.java](/CS2336/HW1/src/DrinkRewards/Drink.java): contains the definition of a helper class, including 14 methods
+* [Order.java](/CS2336/HW1/src/DrinkRewards/Order.java): contains the definition of a helper class, including 6 methods
+* [OrderManager.java](/CS2336/HW1/src/DrinkRewards/OrderManager.java): contains the definition of a helper class, including 13 methods
+* [Customer.java](/CS2336/HW1/src/DrinkRewards/Customer.java): contains the definition of a base class, including 24 methods
+* [GoldCustomer.java](/CS2336/HW1/src/DrinkRewards/GoldCustomer.java): contains the definition of a Customer subclass, including 11 methods
+* [PlatinumCustomer.java](/CS2336/HW1/src/DrinkRewards/PlatinumCustomer.java): contains the definition of a Customer subclass, including 11 methods
 
 ## `data/` Folder
 When executing from the project root, input & output file names must be provided through their relative path (ie. with the prepend `data/`). (This functionality is hard-coded into [OrderManager.java](/CS2336/HW1/src/DrinkRewards/OrderManager.java).)

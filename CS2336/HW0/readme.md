@@ -23,7 +23,7 @@ java -cp build Tickets.Main
 ## `src/` Folder
 ### Source Files in the `Tickets/` Package
 * [Main.java](/CS2336/HW0/src/Tickets/Main.java): program driver containing `main()`
-* [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java): contains the definition of a class, including 18 functions
+* [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java): contains the definition of a class, including 18 methods
 
 ## `data/` Folder
 When executing from the project root, input & output file names must be provided through their relative path (ie. with the prepend `data/`). (This functionality is hard-coded into [Auditorium.java](/CS2336/HW0/src/Tickets/Auditorium.java).)
